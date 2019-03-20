@@ -1,17 +1,31 @@
+let txtEmail=document.getElementById("usuario");
+let txtPassword=document.getElementById("pass");
+let btnLogin=document.getElementById("login");
 
-function validar (){
-  let usuario = document.getElementById("usuario").value;
-  let constraseña = document.getElementById("pass").value;
+btnLogin.addEventListener("click", e =>{
+  const email = txtEmail.value;
+  const pass = txtPassword.value;
+  const auth = firebase.auth();
+  const promise = auth.signInWithEmailAndPassword(email, pass);
+  promise.catch(e => console.log(e.message));
 
-  if ("usuario" == lucero && "contraseña == "12345"){
-      alert("usuario y contraseña validos"){
+});
+
+
+
+// function validar (){
+//   let usuario = document.getElementById("usuario").value;
+//   let constraseña = document.getElementById("pass").value;
+
+//   if ("usuario" == lucero && "contraseña == "12345"){
+//       alert("usuario y contraseña validos"){
           
-      }
-      else {
-          alert("Verifique sus datos")
-      }
-  }
-}
+//       }
+//       else {
+//           alert("Verifique sus datos")
+//       }
+//   }
+// }
 //Contraer
 
 

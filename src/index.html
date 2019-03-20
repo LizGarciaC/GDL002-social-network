@@ -24,7 +24,7 @@
         <label for="password">Password</label>
         <input type="password" placeholder="Enter Password" id="pass" >
 
-        <input type="submit" value="Log In">
+        <input type="button" value="Log In" id="login">
 
         <a href="#">Lost your password</a><br>
         <a href="#">Don't have an account?</a>
@@ -32,10 +32,19 @@
 </div>
 
 
-
-
-
-
+<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA8shlOmuzRDiVajqFG000KfimiBLJymxs",
+    authDomain: "vxm-viaja-por-mexico.firebaseapp.com",
+    databaseURL: "https://vxm-viaja-por-mexico.firebaseio.com",
+    projectId: "vxm-viaja-por-mexico",
+    storageBucket: "vxm-viaja-por-mexico.appspot.com",
+    messagingSenderId: "732082116963"
+  };
+  firebase.initializeApp(config);
+</script>
 
 
 
