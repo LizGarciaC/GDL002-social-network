@@ -1,5 +1,20 @@
 # Creando una Red Social
 
+
+
+## Páginas Consultadas ó inspiración.
+
+http://www.panabee.com/name-generator?domain-name=viajes%20mexico  Para el nombre de la App Web.
+Encuesta Google:
+
+https://goo.gl/forms/LebqoBRYynXh2oBe2
+
+https://www.mercawise.com/estudios-de-mercado-en-mexico/encuesta-sobre-viajes/
+
+
+https://micaelasuarezcortez.github.io/LIM008-social-network/src/#/signIn
+
+
 ## Preámbulo
 
 Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
