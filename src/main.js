@@ -34,7 +34,7 @@ function ingreso() {
     console.log(errorCode);
     console.log(errorMessage);
   });
-  alert("si funciona");
+ 
 }
 
 
