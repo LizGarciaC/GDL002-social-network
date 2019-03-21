@@ -15,7 +15,9 @@ function registro(){
   const email = txtEmail.value;
   const pass = txtPassword.value;
 
-  firebase.auth().createUserWithEmailAndPassword(email, pass).catch(function(error){
+  firebase.auth().createUserWithEmailAndPassword(email, pass)
+  
+  .catch(function(error){
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(errorCode);
@@ -28,8 +30,9 @@ function registro(){
 function ingreso() { 
   const email2 = txtEmailLogin.value;
   const pass2 = txtPasswordLogin.value;
-  firebase.auth().signInWithEmailAndPassword(email2, pass2).catch(function(error){
-    
+  firebase.auth().signInWithEmailAndPassword(email2, pass2)
+  
+  .catch(function(error){  
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(errorCode);
@@ -38,9 +41,35 @@ function ingreso() {
   
 }
 
-function observador() {
+function observador(){
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log("existe usuario activo")
+      aparece();
+      // User is signed in.
+      var displayName = user.displayName;
+      var email = user.email;
+      console.log(email);
+      var emailVerified = user.emailVerified;
+      var photoURL = user.photoURL;
+      var isAnonymous = user.isAnonymous;
+      var uid = user.uid;
+      var providerData = user.providerData;
+      // ...
+    } else {
+      // User is signed out.
+      console.log("no existe usuario activo")
+      // ...
+    }
+  });
+   }
 
+observador ();
+
+function aparece () {
+  const contenido = document.getElementById("contenido")
 }
+
 
 
 // function validar (){
