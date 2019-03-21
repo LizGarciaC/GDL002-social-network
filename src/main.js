@@ -29,18 +29,18 @@ function ingreso() {
   const email2 = txtEmailLogin.value;
   const pass2 = txtPasswordLogin.value;
   firebase.auth().signInWithEmailAndPassword(email2, pass2).catch(function(error){
-    
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(errorCode);
     console.log(errorMessage);
   });
-  
+  alert("si funciona");
 }
 
-function observador() {
 
-}
+// function observador() {
+
+// }
 
 
 // function validar (){

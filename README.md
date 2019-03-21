@@ -15,6 +15,10 @@ https://www.mercawise.com/estudios-de-mercado-en-mexico/encuesta-sobre-viajes/
 https://micaelasuarezcortez.github.io/LIM008-social-network/src/#/signIn
 
 
+Proyecto terminado  funcionando
+https://github.com/SandraMartinezCorcino/LIM008-social-network/tree/master/src/lib
+
+
 ## Preámbulo
 
 Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
