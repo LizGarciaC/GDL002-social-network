@@ -4,19 +4,22 @@ let txtEmail=document.getElementById("email");
 let txtEmailLogin = document.getElementById("email2")
 let txtPassword=document.getElementById("pass");
 let txtPasswordLogin = document.getElementById("pass2")
-let txtUser=document.getElementById("user")
+let txtUser=document.getElementById("userName")
 let btnLogin=document.getElementById("login");
 let btnSignUp=document.getElementById("registered")
-let btnLogout=document.getElementById("logOut")
+let btnLogout=document.getElementById("logout")
 
 
 //Añadir evento Sign Up
-function registro(){ 
+function createAccount(){ 
   const email = txtEmail.value;
   const pass = txtPassword.value;
 
   firebase.auth().createUserWithEmailAndPassword(email, pass)
-  
+  .then(function(){
+    check()
+  })
+
   .catch(function(error){
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -26,8 +29,11 @@ function registro(){
   
 }
 
+document.querySelector("#registered").addEventListener("click", createAccount);
+
+
 //Añadir evento Login
-function ingreso() { 
+function logIn() { 
   const email2 = txtEmailLogin.value;
   const pass2 = txtPasswordLogin.value;
   firebase.auth().signInWithEmailAndPassword(email2, pass2)
@@ -41,51 +47,77 @@ function ingreso() {
   
 }
 
-function observador(){
+document.querySelector("#login").addEventListener("click", logIn);
+
+
+function observer(){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log("existe usuario activo")
-      aparece();
+      appear(user);
       // User is signed in.
-      var displayName = user.displayName;
-      var email = user.email;
-      console.log(email);
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      var isAnonymous = user.isAnonymous;
-      var uid = user.uid;
-      var providerData = user.providerData;
+      const displayName = user.displayName;
+      const email = user.email;
+
+      console.log("**************************");
+      console.log(user.emailVerified);
+      console.log("**************************");
+      
+      const emailVerified = user.emailVerified;
+      const photoURL = user.photoURL;
+      const isAnonymous = user.isAnonymous;
+      const uid = user.uid;
+      const providerData = user.providerData;
       // ...
     } else {
       // User is signed out.
-      console.log("no existe usuario activo")
+      console.log("no existe usuario activo");
       // ...
     }
   });
    }
 
-observador ();
+observer ();
 
-function aparece () {
-  const contenido = document.getElementById("contenido")
+function appear(user) {
+  user = user;
+  const logoutBox=document.getElementById("logout-box");
+  if (user.emailVerified){
+    logoutBox.innerHTML= `
+    <p>Bienvenido!</p>
+    `;
+  }
+ 
+  
+}
+
+function close(){
+  firebase.auth().signOut()
+  .then(function(){
+    console.log("Saliendo...")
+  })
+
+  .catch(function(error){
+    console.log(error)
+  })
+};
+
+document.querySelector("#lock").addEventListener("click", close)
+
+
+function check(){
+  var user = firebase.auth().currentUser;
+
+user.sendEmailVerification().then(function() {
+  console.log("enviando correo..." );
+  // Email sent.
+}).catch(function(error) {
+  console.log(error);
+  // An error happened.
+});
 }
 
 
-
-// function validar (){
-//   let usuario = document.getElementById("usuario").value;
-//   let constraseña = document.getElementById("pass").value;
-
-//   if ("usuario" == lucero && "contraseña == "12345"){
-//       alert("usuario y contraseña validos"){
-          
-//       }
-//       else {
-//           alert("Verifique sus datos")
-//       }
-//   }
-// }
-//Contraer
 
 
 
