@@ -1,13 +1,12 @@
-
-  
 let txtEmail=document.getElementById("email");
-let txtEmailLogin = document.getElementById("email2")
+let txtEmailLogin = document.getElementById("email2");
 let txtPassword=document.getElementById("pass");
-let txtPasswordLogin = document.getElementById("pass2")
-let txtUser=document.getElementById("userName")
+let txtPasswordLogin = document.getElementById("pass2");
 let btnLogin=document.getElementById("login");
-let btnSignUp=document.getElementById("registered")
-let btnLogout=document.getElementById("logout")
+let btnSignUp=document.getElementById("registered");
+let btnLogout=document.getElementById("logout");
+let msgError = document.getElementById("mensaje-error");
+
 
 
 //Añadir evento Sign Up
@@ -43,6 +42,10 @@ function logIn() {
     const errorMessage = error.message;
     console.log(errorCode);
     console.log(errorMessage);
+
+    msgError.innerHTML="Usuario no registrado o datos incorrectos";
+    txtEmailLogin.value=" ";
+    txtPasswordLogin.value=" ";
   });
   
 }
@@ -85,9 +88,9 @@ function appear(user) {
   if (user.emailVerified){
     logoutBox.innerHTML= `
     <p>Bienvenido!</p>
+    <button id="lock">Cerrar Sesión</button>
     `;
   }
- 
   
 }
 
@@ -111,64 +114,13 @@ function check(){
 user.sendEmailVerification().then(function() {
   console.log("enviando correo..." );
   // Email sent.
-}).catch(function(error) {
+}).catch(function(error) {  
   console.log(error);
   // An error happened.
 });
 }
 
 
+// Union de pantallas (Generador dinamico de html a js)
 
-
-
-
-//Entrada de mensaje
-
-
-
-
-
-
-
-
-
-
-// // Poner imagen de loader
-
-// const fromSpace = [
-//   'Interstellar',
-//   'Gravity',
-//   'The Martian',
-//   'ALIEN',
-//   'Enemy Mine',
-//   'Star Trek',
-//   'Star Wars',
-//   'Gattaca',
-//   'Predator',
-//   'Guardians of the Galaxy'
-// ];
-
-
-
-
-
-
-// btnSearch.addEventListener('click', () => {
-//   console.log("Si funciono");
-
-//   for (let i = 0; i < fromSpace.length; i++) {
-
-//       window.data.searchMovie(fromSpace[i])
-
-//           .then((movie) => {
-//               // recibimos los datos de la pelicula que la promesa nos envio con resolve
-//               // alert(movie);
-//               let pMovieJs = document.getElementById("pMovie");
-
-//               pMovieJs.innerHTML += `<div class='movieItem'><strong>Título:  </strong><span>${movie.Title}</strong><br/></span>
-//                       <strong> Actores y Actrices:  </strong><span>${movie.Actors}</strong><br/></span>
-//                       <strong> Género:  </strong><span>${movie.Genre}</strong><br/></span>
-//                       <strong> Poster  </strong><span><img src="${movie.Poster}"/></strong><br/></span></div>`;
-//           });
-//   }
-// });
+// pantalla 2 a 3
