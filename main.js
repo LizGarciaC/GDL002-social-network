@@ -4,7 +4,11 @@ let txtPassword=document.getElementById("pass");
 let txtPasswordLogin = document.getElementById("pass2");
 let btnLogin=document.getElementById("login");
 let btnSignUp=document.getElementById("registered");
+<<<<<<< HEAD
 let btnLogout=document.getElementById("logout");
+=======
+let btnLogout=document.getElementById("logOut");
+>>>>>>> 07ba5f7378f78b9b9de830bd62a0bb84e8dc1f73
 let msgError = document.getElementById("mensaje-error");
 
 

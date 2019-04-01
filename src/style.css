@@ -1,0 +1,88 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Lato';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Catamaran';
+  font-weight: 800 !important;
+}
+
+.nav {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #404041;
+}
+
+.nav .nav-link {
+  text-transform: uppercase;
+  color: #fff;
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.nav .nav-item .nav-link {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+}
+
+.carousel-item .carousel.inner {
+  height: 50vw;
+}
+
+.carousel-inner img {
+  width: 100%;
+  max-height: 50%;
+}
+
+.carousel-inner{
+height: 60vh;
+}
+
+
+.bg-black {
+  background-color: #404041 !important;
+ }
+
+ /* Boton "entrar" */
+
+ .entrar {
+  width: 100%;
+  text-align: center;
+  padding: 3%;
+  display: inline-block;
+  color: #318aac !important;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0.5em 1.2em;
+  background: rgba(0,0,0,0);
+  border: 2px solid;
+  border-color: #318aac;
+  transition: all 1s ease;
+  position: relative;
+ }
+
+ .entrar:hover {
+  background: #318aac;
+  color: #fff !important;
+ }
+
+ .container {
+   margin-top: 20px;
+   align-items: stretch;
+ }
+ 

@@ -206,9 +206,15 @@
     letter-spacing: 0.1rem;
   }
 
+<<<<<<< HEAD
 .post {
   resize: none;
 }
+=======
+  .post {
+    resize: none;
+  }
+>>>>>>> 07ba5f7378f78b9b9de830bd62a0bb84e8dc1f73
 
   /* */
 
