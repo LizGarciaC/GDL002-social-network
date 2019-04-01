@@ -4,7 +4,7 @@ let txtPassword=document.getElementById("pass");
 let txtPasswordLogin = document.getElementById("pass2");
 let btnLogin=document.getElementById("login");
 let btnSignUp=document.getElementById("registered");
-let btnLogout=document.getElementById("logout");
+let btnLogout=document.getElementById("logOut");
 let msgError = document.getElementById("mensaje-error");
 
 
