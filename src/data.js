@@ -1,5 +1,3 @@
-(function(){
-
 
     // Initialize Firebase
     var config = {
@@ -11,8 +9,6 @@
         messagingSenderId: "732082116963"
     };
     firebase.initializeApp(config);
- } ());
  
 
  
-
