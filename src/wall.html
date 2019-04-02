@@ -55,14 +55,14 @@
 
   <div class="card">
     <div class="card-header">
-      <textarea name="¡Comparte tu viaje!" class="post" id="" cols="30" rows="6"></textarea>
+      <textarea name="¡Comparte tu viaje!" class="post" id="post" cols="30" rows="6"></textarea>
 
     </div>
     <div class="card-body">
       <h5 class="card-title"></h5>
       <p class="card-text"></p>
       <a href="#" id="logOut" class="btn btn-info">Cerrar Sesión</a>
-      <a href="#" class="btn btn-info">Publicar</a>
+      <a href="#" class="btn btn-info" id="btnPost">Publicar</a>
       <select name="filter" id="Filter">
         <option value="Público">Público</option>
         <option value="Privado">Privado</option>
@@ -71,37 +71,10 @@
   </div><br>
 
 
-
-  <div class="card text-center">
-    <div class="card-header">
-      User <span class="fas fa-user"></span>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title"></h5>
-      <p class="card-text"></p>
-    </div>
-    <div class="card-footer text-muted">
-      <button><span class="fas fa-heart"></span></button>
-      <button><span class="fas fa-pencil-alt"></span></button>
-      <button><span class="fas fa-trash-alt"></span></button>
-    </div>
-  </div><br>
-
-
-  <div class="card text-center">
-    <div class="card-header">
-      User <span class="fas fa-user"></span>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title"></h5>
-      <p class="card-text"></p>
-    </div>
-    <div class="card-footer text-muted">
-      <button><span class="fas fa-heart"></span></button>
-      <button><span class="fas fa-pencil-alt"></span></button>
-      <button><span class="fas fa-trash-alt"></span></button>
-    </div>
-  </div>
+<!-- División para generar los post dinámicos -->
+<div id="wallContainer">
+   </div>
+ 
 
 
   <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
@@ -114,8 +87,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
-  <!-- <script src="wall.js"></script> -->
-  <script src="data.js"></script>
+  <script src="wall.js"></script> -->
+  <!-- <script src="data.js"></script> -->
   <script src="main.js"></script>
 </body>
 
