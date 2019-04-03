@@ -1,80 +1,118 @@
 // Funcion para menú de navegación
+// console.log(document.querySelector(".nav-trigger"));
 
-var navTrigger = document.getElementsByClassName('nav-trigger')[0],
-  body = document.getElementsByTagName('body')[0];
+// document.querySelector(".nav-trigger").addEventListener('click', () => {
+//   event.preventDefault();
+//   document.querySelector("body").classList.toggle('nav-open');
+// });
 
-navTrigger.addEventListener('click', toggleNavigation);
+// const posteo = document.getElementById("post");
+// var db = firebase.firestore();
+// let btnPost = document.getElementById("btnPost");
+// btnPost.addEventListener("click", () => {
+//   db.collection("posts").add({
+//     publicacion: posteo.value
+//   })
+//     .then(function (docRef) {
+//       console.log("Document written with ID: ", docRef.id);
+//       document.getElementById("post").value = "";
+//     })
+//     .catch(function (error) {
+//       console.error("Error adding document: ", error);
+//     });
 
-function toggleNavigation(event) {
-  event.preventDefault();
-  body.classList.toggle('nav-open');
-}
+//   });
 
-firebase.initializeApp({
+//   console.log(document.querySelector("#eliminar"));
+  
+  
+  
 
-  apiKey: "AIzaSyA8shlOmuzRDiVajqFG000KfimiBLJymxs",
+  // *************** Wall Test ******************//
+  // Funcion para menú de navegación
+  // if (document.querySelector(".nav-trigger") != null) {
+  //   document.querySelector(".nav-trigger").addEventListener('click', () => {
+  //     event.preventDefault();
+  //     document.querySelector("body").classList.toggle('nav-open');
+  //   });
+  // }
 
-  authDomain: "vxm-viaja-por-mexico.firebaseapp.com",
-
-  projectId: "vxm-viaja-por-mexico"
-
-});
-
-const posteo = document.getElementById("post");
-var db = firebase.firestore();
-let btnPost = document.getElementById("btnPost");
-btnPost.addEventListener("click", () => {
-  db.collection("posts").add({
-    publicacion: posteo.value
-  })
-    .then(function (docRef) {
-      console.log("Document written with ID: ", docRef.id);
-      document.getElementById("post").value = "";
-    })
-    .catch(function (error) {
-      console.error("Error adding document: ", error);
-    });
+  // if (document.querySelector("#btnPost") != null) {
+  //   window.location.hash = "#wall";
+  //   document.querySelector("#btnPost").addEventListener("click", () => {
+  //     let db = firebase.firestore();
+  //     const posteo = document.querySelector("#post");
+  //     db.collection("posts").add({
+  //       user: firebase.auth().currentUser.email,
+  //       timestamp: Date.now(),
+  //       publicacion: posteo.value,
+  //       isPrivate : document.querySelector("#Filter").selectedOptions[0].value
+  //     })
+  //       .then(function (docRef) {
+  //         console.log("Document written with ID: ", docRef.id);
+  //         document.getElementById("post").value = "";
+  //       })
+  //       .catch(function (error) {
+  //         console.error("Error adding document: ", error);
+  //       });
 
 
 
-  // Función para mostrar en pantalla las publicaciones de usuarios
+  //     // Función para mostrar en pantalla las publicaciones de usuarios
 
-  let wallPost = document.getElementById("wallContainer");
+  //     let wallPost = document.querySelector("#wallContainer");
 
-  db.collection("posts").onSnapshot((querySnapshot) => {
-    wallPost.innerHTML="";
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data().publicacion}`);
+  //     db.collection("posts").onSnapshot((querySnapshot) => {
+        
+  //       wallPost.innerHTML = "";
+  //       querySnapshot.forEach((doc) => {
+  //         console.log(`${doc.id} => ${doc.data().publicacion}`);
 
-      wallPost.innerHTML += ` <div class="card text-center">
-      <div class="card-header">
-        User <span class="fas fa-user"></span>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title"></h5>
-        <p class="card-text">${ doc.data().publicacion} </p>
-      </div>
-      <div class="card-footer text-muted">
-        <button><span class="fas fa-heart"></span></button>
-        <button><span class="fas fa-pencil-alt"></span></button>
-        <button><span class="fas fa-trash-alt" id="eliminar" onclick="eliminar('${doc.id}')"></span></button>
-      </div>
-      </div>`
+  //         wallPost.innerHTML += ` <div class="card text-center">
+  //     <div class="card-header my-3 mx-6">
+  //       <button><i class="large material-icons">face</i></button>
+  //       ${ doc.data().user} 
+  //     </div>
+  //     <div class="card-body">
+  //       <h5 class="card-title"></h5>
+  //       <p class="card-text">${ doc.data().publicacion} </p>
+  //     </div>
+  //     <div class="card-footer text-muted">
+  //       <button class="btn btn-primary"><i class="large material-icons">thumb_up</i></button>
+  //       <button class="btn btn-primary"><i class="large material-icons">mode_edit</i></button>
+  //       <button class= "btn btn-primary" id="eliminar" onclick="eliminar()"><i class="large material-icons">delete</i></button>
+        
+  //     </div>
+  //     </div>`
 
-    });
-  });
-});
+  //       });
+  //     });
+  //   });
+  // }
 
-function eliminar (id){
 
-  db.collection("posts").doc(id).delete().then(function() {
+//  function eliminar(id) {
+//     console.log(doc.id);
+//     db.collection("posts").doc(id).delete().then(function () {
 
-    console.log("Document successfully deleted!");
+//       console.log("Document successfully deleted!");
 
-  }).catch(function(error) {
+//     }).catch(function (error) {
 
-    console.error("Error removing document: ", error);
+//       console.error("Error removing document: ", error);
 
-  });
+//     });
 
-}
+//   }
+
+// const eliminar= (id) => {
+//   db.collection("posts").doc(id).delete().then(function() {
+//     console.log("Document successfully deleted!");
+// }).catch(function(error) {
+//     console.error("Error removing document: ", error);
+// });
+  
+
+// }
+
+
