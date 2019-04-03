@@ -42,7 +42,7 @@ btnPost.addEventListener("click", () => {
   let wallPost = document.getElementById("wallContainer");
 
   db.collection("posts").onSnapshot((querySnapshot) => {
-    //seePublication.innerHTML="";
+    wallPost.innerHTML="";
     querySnapshot.forEach((doc) => {
       console.log(`${doc.id} => ${doc.data().publicacion}`);
 
@@ -57,10 +57,24 @@ btnPost.addEventListener("click", () => {
       <div class="card-footer text-muted">
         <button><span class="fas fa-heart"></span></button>
         <button><span class="fas fa-pencil-alt"></span></button>
-        <button><span class="fas fa-trash-alt"></span></button>
+        <button><span class="fas fa-trash-alt" id="eliminar" onclick="eliminar('${doc.id}')"></span></button>
       </div>
       </div>`
 
     });
   });
 });
+
+function eliminar (id){
+
+  db.collection("posts").doc(id).delete().then(function() {
+
+    console.log("Document successfully deleted!");
+
+  }).catch(function(error) {
+
+    console.error("Error removing document: ", error);
+
+  });
+
+}
