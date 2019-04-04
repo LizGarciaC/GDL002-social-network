@@ -1,7 +1,7 @@
 const app = {
-
+//***************Inicializa los observadores******************//
   startup: () => {
-    //***************Observador Navegacion******************//
+    //***************Observador Navegacion********************//
     window.addEventListener("hashchange", () => {
       app.loadPage(firebase.auth().currentUser);
     });
@@ -12,7 +12,8 @@ const app = {
     });
   },
 
-  //***************Carga Paginas******************//
+ 
+  //**********************Carga Páginas************************//
   loadPage: (user) => {
     if (window.location.hash == "#") {
       return;
@@ -29,7 +30,7 @@ const app = {
       fetch(routes[window.location.hash])
         .then((response) => response.text())
         .then((html) => {
-          document.querySelector("#main").innerHTML = html;
+          document.querySelector("#main").innerHTML = html;  // Cargar el contenido del archivo HTML en section de main, de index.html
           app.loadEvents();
         })
         .catch((error) => {
@@ -51,6 +52,9 @@ const app = {
 
   },
 
+
+
+  //******Agrega los eventos a los controles existentes********//
   loadEvents: () => {
     // *************** Evento para hacer login ******************//
     if (document.querySelector("#login") != null) {
@@ -213,5 +217,5 @@ const app = {
     }
   }
 }
-
+//***************Inicializa la aplicación**********************//
 app.startup();
