@@ -196,7 +196,7 @@ let loadEvents = () => {
       <div class="card-footer text-muted">
         <button class="btn btn-primary"><i class="large material-icons">thumb_up</i></button>
         <button class="btn btn-primary"><i class="large material-icons">mode_edit</i></button>
-        <button class="btn btn-primary" id="eliminar"><i class="large material-icons">delete</i></button>
+        <button class="btn btn-primary" id="eliminar" onclick="eliminar('${doc.id}')"><i class="large material-icons">delete</i></button>
         
       </div>
       </div>`
@@ -205,4 +205,24 @@ let loadEvents = () => {
       });
     });
   }
+}
+
+let db = firebase.firestore();
+
+
+
+function eliminar(id){
+
+  db.collection("posts").doc(id).delete().then(function() {
+
+    console.log("Document successfully deleted!");
+
+}).catch(function(error) {
+
+    console.error("Error removing document: ", error);
+
+});
+
+
+
 }
