@@ -1,62 +1,78 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-body {
+body{
+  margin: 0;
+  padding: 0;
+  background-image: url("http://samadhicoaching.com/wp-content/uploads/2014/07/ToTheTop2.jpg");
+  height: 650px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
   font-family: 'Lato';
-}
+ }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Catamaran';
-  font-weight: 800 !important;
-}
 
-.nav {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.navigation {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
   background-color: #404041;
 }
 
-.nav .nav-link {
+.navigation .nav-link {
   text-transform: uppercase;
   color: #fff;
   font-family: 'Fredoka One', cursive;
   font-size: 0.8rem;
   letter-spacing: 0.1rem;
-  font-weight: 700;
-  text-align: right;
+  font-weight: 500;
+  text-align: left;
+  margin-left: 3%;
 }
 
-.nav .nav-item .nav-link {
+.navigation .nav-item .nav-link {
   text-transform: uppercase;
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.1rem;
 }
 
-.carousel-item .carousel.inner {
-  height: 50vw;
+/* contenido */
+
+.bienvenida {
+  width: 300px;
+  height: 440px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  top: 55%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+  padding: 28px 30px;
 }
 
-.carousel-inner img {
-  width: 100%;
-  max-height: 50%;
+
+.bienvenida p{
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
 }
 
-.carousel-inner{
-height: 60vh;
+.textBienvenida {
+  font-family: 'Loto';
+  font-size: 20px;
+  margin-top: px;
 }
 
+.textBienvenida2 {
+  font-family: 'Loto';
+  font-size: 20px;
+}
 
-.bg-black {
-  background-color: #404041 !important;
- }
 
  /* Boton "entrar" */
 
@@ -65,11 +81,11 @@ height: 60vh;
   text-align: center;
   padding: 3%;
   display: inline-block;
-  color: #318aac !important;
+  color: #fff !important;
   font-size: 20px;
   font-weight: 500;
   padding: 0.5em 1.2em;
-  background: rgba(0,0,0,0);
+  background: #318aac;
   border: 2px solid;
   border-color: #318aac;
   transition: all 1s ease;
@@ -80,9 +96,3 @@ height: 60vh;
   background: #318aac;
   color: #fff !important;
  }
-
- .container {
-   margin-top: 20px;
-   align-items: stretch;
- }
- 

@@ -3,7 +3,7 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url("https://i.pinimg.com/564x/bd/a2/25/bda225650f71b04d2b6bb92f717d7cab.jpg");
+    background-image: url("http://samadhicoaching.com/wp-content/uploads/2014/07/ToTheTop2.jpg");
     height: 650px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -12,17 +12,44 @@ body{
     font-family: 'Lato';
    }
   
+   .navigation {
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+    background-color: #404041;
+  }
+  
+  .navigation .nav-link {
+    text-transform: uppercase;
+    color: #fff;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+    font-weight: 400;
+    text-align: left;
+    margin-left: 3%;
+  }
+  
+  .navigation .nav-item .nav-link {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+  }
+  
+  
+   
+
    .loginBox {
     width: 320px;
-    height: 550px;
+    height: 500px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    top: 50%;
+    top: 60%;
     left: 50%;
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
-    padding: 70px 30px;
+    padding: 35px 30px;
   }
 
   p {
@@ -33,7 +60,7 @@ body{
     margin: 0;
     padding: 0 0 20px;
     font-family: 'Lato';
-    font-size: 27px;
+    font-size: 25px;
     margin-top: -10%;
   }
   
@@ -47,22 +74,23 @@ body{
     width: 100%;
     margin-bottom: 20px;
   }
-  .loginBox input[type="email"], input[type="password"]
+  .loginBox input[type="email"], input[type="password"], input[type="user"]
   {
     border: none;
     border-bottom: 1px solid #fff;
     background: transparent;
     outline: none;
-    height: 40px;
+    height: 22px;
     color: #fff;
     font-size: 16px;
   }
   .loginBox input[type="button"]
   {
+    width: 136px;
     border: none;
     outline: none;
-    height: 40px;
-    background: #626566;
+    height: 30px;
+    background: #049899;
     color: #fff;
     font-size: 18px;
     border-radius: 20px;
@@ -70,7 +98,9 @@ body{
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
+    margin-left: 20%;
 }
+
   .loginBox input[type="button"]:hover
   {
     cursor: pointer;
@@ -85,7 +115,7 @@ body{
   }
   .loginBox a:hover
   {
-    color: #39dc79;
+    color: #049899;
   }
   
   .fb {
@@ -106,6 +136,7 @@ body{
     float: none;
     margin-left: 20%;
   }
+
 
   button.fb:hover {
     background: #fff;
