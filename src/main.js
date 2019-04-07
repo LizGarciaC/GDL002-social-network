@@ -168,7 +168,7 @@ const app = {
     if (document.querySelector("#btnPost") != null) {
       window.location.hash = "#wall";
       document.querySelector("#btnPost").addEventListener("click", () => {
-        debugger
+        
         let db = firebase.firestore();
         let like=0;
         const posteo = document.querySelector("#post");
@@ -291,16 +291,19 @@ const app = {
     return ` <div class="card text-center">
     <div class="card-header my-3 mx-6">
       <i class="large material-icons">person</i>
-      ${ item.data().user.userName}  -  ${item.data().isPrivate} - ${new Date(item.data().timestamp)}
+      ${ item.data().user.userName}  ${item.data().isPrivate}
     </div>
     <div class="card-body">
       <h5 class="card-title"></h5>
       <p class="card-text">${ item.data().publicacion} </p>
     </div>
     <div class="card-footer text-muted">
-      <div class="likeCount"><button class="btn btn-primary" id='${item.id}' onclick="app.addLikes('${item.id}' , '${item.data().like}')"><i class="large material-icons" >thumb_up</i></button>
-      <button class="btn btn-primary" onclick="app.editPost('${item.id}','${item.data().publicacion}')"><i class="large material-icons">mode_edit</i></button>
-      <button class="btn btn-primary" id="eliminar" onclick="app.eliminar('${item.id}')"><i class="large material-icons">delete</i></button>
+    <div class="card-footer text-muted">
+   ${new Date(item.data().timestamp)}
+    </div>
+      <div class="likeCount"><button class="btn btn-info" id='${item.id}' onclick="app.addLikes('${item.id}' , '${item.data().like}')"><i class="large material-icons" >thumb_up</i></button>
+      <button class="btn btn-info" onclick="app.editPost('${item.id}','${item.data().publicacion}')"><i class="large material-icons">mode_edit</i></button>
+      <button class="btn btn-info" id="eliminar" onclick="app.eliminar('${item.id}')"><i class="large material-icons">delete</i></button>
       </div>
     </div>
     </div>`
