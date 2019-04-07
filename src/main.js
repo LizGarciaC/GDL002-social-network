@@ -1,5 +1,5 @@
 const app = {
-//***************Inicializa los observadores******************//
+  //***************Inicializa los observadores******************//
   startup: () => {
     //***************Observador Navegacion********************//
     window.addEventListener("hashchange", () => {
@@ -12,7 +12,7 @@ const app = {
     });
   },
 
- 
+
   //**********************Carga Páginas************************//
   loadPage: (user) => {
     if (window.location.hash == "#") {
@@ -30,7 +30,8 @@ const app = {
       fetch(routes[window.location.hash])
         .then((response) => response.text())
         .then((html) => {
-          document.querySelector("#main").innerHTML = html;  // Cargar el contenido del archivo HTML en section de main, de index.html
+          // Cargar el contenido del archivo HTML en section de main, de index.html
+          document.querySelector("#main").innerHTML = html;
           app.loadEvents();
         })
         .catch((error) => {
@@ -56,6 +57,7 @@ const app = {
 
   //******Agrega los eventos a los controles existentes********//
   loadEvents: () => {
+
     // *************** Evento para hacer login ******************//
     if (document.querySelector("#login") != null) {
       document.querySelector("#login").addEventListener("click", () => {
@@ -155,7 +157,7 @@ const app = {
     // *************** Wall Test ******************//
     // Funcion para menú de navegación
     if (document.querySelector(".nav-trigger") != null) {
-      document.querySelector(".nav-trigger").addEventListener('click', () => {
+      document.querySelector(".nav-trigger").addEventListener('click', (event) => {
         event.preventDefault();
         document.querySelector("body").classList.toggle('nav-open');
       });
@@ -166,27 +168,48 @@ const app = {
     if (document.querySelector("#btnPost") != null) {
       window.location.hash = "#wall";
       document.querySelector("#btnPost").addEventListener("click", () => {
+        
         let db = firebase.firestore();
-        let like = 0;
+        let like=0;
         const posteo = document.querySelector("#post");
-        db.collection("posts").add({
-          user: firebase.auth().currentUser.email,
-          timestamp: Date.now(),
-          publicacion: posteo.value,
-          like : like,
-          isPrivate: document.querySelector("#Filter").selectedOptions[0].value
-        })
-          .then(function (docRef) {
-            console.log("Document written with ID: ", docRef.id);
-            document.getElementById("post").value = "";
+        if (app.washingtonRef == null) {
+          db.collection("posts").add({
+            user: firebase.auth().currentUser.email,
+            timestamp: Date.now(),
+            publicacion: posteo.value,
+            like:like,
+            isPrivate: document.querySelector("#Filter").selectedOptions[0].value
           })
-          .catch(function (error) {
-            console.error("Error adding document: ", error);
-          });
+
+            .then(function (docRef) {
+              console.log("Document written with ID: ", docRef.id);
+              document.getElementById("post").value = "";
+              washingtonRef = null;
+            })
+            .catch(function (error) {
+              console.error("Error adding document: ", error);
+            });
+
+        } else {
+          app.washingtonRef.update({
+            publicacion: posteo.value,
 
 
+          })
 
-        // Función para mostrar en pantalla las publicaciones de usuarios
+            .then(function () {
+              console.log("Document successfully updated!");
+              document.getElementById("post").value = "";
+              washingtonRef = null;
+            })
+            .catch(function (error) {
+              // The document probably doesn't exist.
+              console.error("Error updating document: ", error);
+            });
+        }
+
+
+        // Función para mostrar en pantalla todas publicaciones de usuarios despúes de insertar un valor nuevo
 
         let wallPost = document.querySelector("#wallContainer");
 
@@ -195,109 +218,209 @@ const app = {
           wallPost.innerHTML = "";
           querySnapshot.forEach((doc) => {
             console.log(`${doc.id} => ${doc.data().publicacion}`);
+            wallPost.innerHTML += app.crearKardexItem(doc);
+          });
+        });
+      });
 
-            wallPost.innerHTML += ` <div class="card text-center">
-      <div class="card-header card-title widget2">
-        <i class="large material-icons">person</i>
-        ${ doc.data().user} 
-      </div>
-      <div class="card-body">
-        <p class="card-text">${ doc.data().publicacion} </p>
-      </div>
-      <div class="card-footer text-muted widget2">
-        <button class="btn btn-info" id='${doc.id}' onclick="addLike('${doc.id}', '${doc.data().like}')"><i class="large material-icons">thumb_up</i></button>
-        <button class="btn btn-info" onclick="editPost('${doc.id}', '${ doc.data().publicacion}')"><i class="large material-icons">mode_edit</i></button>
-        <button class="btn btn-info" id="eliminar" onclick="eliminar('${doc.id}')"><i class="large material-icons">delete</i></button>
-        
-      </div>
-      </div>`
+      // Función para mostrar en pantalla las publicaciones de usuarios cuando carga la página
+      let db = firebase.firestore();
 
+      let wallPost = document.querySelector("#wallContainer");
+
+      db.collection("posts").onSnapshot((querySnapshot) => {
+        wallPost.innerHTML = "";
+        querySnapshot.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data().publicacion}`);
+          wallPost.innerHTML += app.crearKardexItem(doc);
+        });
+      });
+    }
+
+    // *************** Filtrar elementos publicos******************//
+
+    if (document.querySelector("#btnShowPublic") != null) {
+      // window.location.hash = "#wall";
+      document.querySelector("#btnShowPublic").addEventListener("click", () => {
+
+        let db = firebase.firestore();
+
+        // Función para mostrar en pantalla las publicaciones de usuarios
+        let wallPost = document.querySelector("#wallContainer");
+
+        db.collection("posts").onSnapshot((querySnapshot) => {
+          wallPost.innerHTML = "";
+          querySnapshot.forEach((doc) => {
+            if (doc.data().isPrivate == "publico") {
+              console.log(`${doc.id} => ${doc.data().publicacion}`);
+              wallPost.innerHTML += app.crearKardexItem(doc);
+            }
           });
         });
       });
     }
-  }
-}
 
-  let db = firebase.firestore();
+    // *************** Filtrar elementos privados ******************//
 
+    if (document.querySelector("#btnShowPrivate") != null) {
+      // window.location.hash = "#wall";
+      document.querySelector("#btnShowPrivate").addEventListener("click", () => {
 
-
-  function eliminar(id){
-
-    db.collection("posts").doc(id).delete().then(function() {
-
-      console.log("Document successfully deleted!");
-
-  }).catch(function(error) {
-
-      console.error("Error removing document: ", error);
-
-  });
-
-  }
+        let db = firebase.firestore();
 
 
-//Editar post//
+        // Función para mostrar en pantalla las publicaciones de usuarios
+        let wallPost = document.querySelector("#wallContainer");
 
-function editPost (id, posteo) {
-
-  document.getElementById("post").value=posteo;
-
-  var boton=document.getElementById("btnPost");
-  boton.innerHTML = "Editar";
-
-  boton.onclick = function(){
-  var washingtonRef = db.collection("posts").doc(id);	
-
-  var posteo =document.getElementById("post").value;
-
-return washingtonRef.update({ 
-  publicacion: posteo.value,  
-})
-
-.then(function() {
-    console.log("Document successfully updated!");
-    boton.innerHTML = "Publicar";
-    document.getElementById("post").value = "";
- 
-})
-.catch(function(error) {
-    // The document probably doesn't exist.
-    console.error("Error updating document: ", error);
-});	
-}
-
-}
-
-// Likes //
-
-function addLike(id, likes) {
-  let db = firebase.firestore();
-  likes++;
-  likes=parseInt(likes);
-  let washingtonRef = db.collection("posts").doc(id);
-  
-  return washingtonRef
-      .update({
-        like: likes,
-        
-      }).then(function(){
-        let washingtonRef = (db.collection("posts").doc(id)).id;
-      
-         let buttonLike= document.getElementById(washingtonRef);
-          buttonLike.innerHTML+= " " + likes;
-          console.log(likes);
-        })
-      .then(function() {
-        console.log('Document successfully updated!');
-      })
-  
-      .catch(function(error) {
-        // The document probably doesn't exist.
-        console.error('Error updating document: ', error);
+        db.collection("posts").onSnapshot((querySnapshot) => {
+          wallPost.innerHTML = "";
+          querySnapshot.forEach((doc) => {
+            if (doc.data().isPrivate == "privado") {
+              console.log(`${doc.id} => ${doc.data().publicacion}`);
+              wallPost.innerHTML += app.crearKardexItem(doc);
+            }
+          });
+        });
       });
-  }
+    }
+  },
 
-  /***************Inicializa la aplicación**********************/
+  // Función para crear los espacios de los posts dinamicamente
+
+  crearKardexItem: (item) => {
+    return ` <div class="card text-center">
+    <div class="card-header my-3 mx-6">
+      <i class="large material-icons">person</i>
+      ${ item.data().user.userName}  ${item.data().isPrivate}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <p class="card-text">${ item.data().publicacion} </p>
+    </div>
+    <div class="card-footer text-muted">
+    <div class="card-footer text-muted">
+   ${new Date(item.data().timestamp)}
+    </div>
+      <div class="likeCount"><button class="btn btn-info" id='${item.id}' onclick="app.addLikes('${item.id}' , '${item.data().like}')"><i class="large material-icons" >thumb_up</i></button>
+      <button class="btn btn-info" onclick="app.editPost('${item.id}','${item.data().publicacion}')"><i class="large material-icons">mode_edit</i></button>
+      <button class="btn btn-info" id="eliminar" onclick="app.eliminar('${item.id}')"><i class="large material-icons">delete</i></button>
+      </div>
+    </div>
+    </div>`
+  },
+  // Función para borrar post
+
+
+
+  // eliminar: (id) => {
+  //   washingtonRef = null;
+  //   let db = firebase.firestore();
+  //   db.collection("posts").doc(id).delete().then(function () {
+
+  //     console.log("Document successfully deleted!");
+
+  //   }).catch(function (error) {
+
+  //     console.error("Error removing document: ", error);
+
+  //   });
+
+  // },
+
+  eliminar: (id) => {
+    washingtonRef = null;
+    let db = firebase.firestore();
+
+    let message = confirm("¿Estás seguro de eliminarlo?");
+          
+    if (message) {
+
+      db.collection("posts").doc(id).delete().then(function () {
+
+        console.log("Document successfully deleted!");
+
+      }).catch(function (error) {
+
+        console.error("Error removing document: ", error);
+      });
+    }
+    else {
+      return false;}
+    },
+
+
+  // Función para modificar posts
+ washingtonRef: null,
+  editPost: (id, posteo) => {
+    let db = firebase.firestore();
+    document.getElementById("post").value = posteo;
+    var boton = document.getElementById("btnPost");
+    //boton.innerHTML = "Editar";
+    app.washingtonRef = db.collection("posts").doc(id);
+  },
+
+  addLikes: (id, likes)=> {
+    let db = firebase.firestore();
+    likes++;
+    likes=parseInt(likes);
+    let washingtonRef = db.collection("posts").doc(id);
+    
+    return washingtonRef
+        .update({
+          like: likes,
+          
+        }).then(function(){
+          let washingtonRef = (db.collection("posts").doc(id)).id;
+        
+           let buttonLike= document.getElementById(washingtonRef);
+            buttonLike.innerHTML+= " " + likes;
+            console.log(likes);
+          })
+        .then(function() {
+          console.log('Document successfully updated!');
+        })
+    
+        .catch(function(error) {
+          // The document probably doesn't exist.
+          console.error('Error updating document: ', error);
+        });
+    },
+   
+}
+
+
+// function addLikes(id, likes) {
+//   likes++;
+
+//   likes = parseInt(likes);
+//   let washingtonRef = db.collection("posts").doc(id);
+
+//   return washingtonRef
+//     .update({
+//       like: likes,
+      
+//     }).then(function(){
+//       let washingtonRef = (db.collection("posts").doc(id)).id;
+    
+//        let buttonLike= document.getElementById(washingtonRef);
+//         buttonLike.innerHTML+= " " + likes;
+//       })
+//     .then(function() {
+//       console.log('Document successfully updated!');
+//     })
+
+//     .catch(function(error) {
+//       // The document probably doesn't exist.
+//       console.error('Error updating document: ', error);
+//     });
+// }
+
+
+
+
+
+
+
+
+/***************Inicializa la aplicación**********************/
 app.startup();
