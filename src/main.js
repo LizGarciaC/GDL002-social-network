@@ -167,11 +167,13 @@ const app = {
       window.location.hash = "#wall";
       document.querySelector("#btnPost").addEventListener("click", () => {
         let db = firebase.firestore();
+        let like=0;
         const posteo = document.querySelector("#post");
         db.collection("posts").add({
           user: firebase.auth().currentUser.email,
           timestamp: Date.now(),
           publicacion: posteo.value,
+          like:like,
           isPrivate: document.querySelector("#Filter").selectedOptions[0].value
         })
           .then(function (docRef) {
@@ -204,12 +206,13 @@ const app = {
         <p class="card-text">${ doc.data().publicacion} </p>
       </div>
       <div class="card-footer text-muted">
-        <button class="btn btn-primary"><i class="large material-icons">thumb_up</i></button>
-        <button class="btn btn-primary"><i class="large material-icons">mode_edit</i></button>
-        <button class="btn btn-primary" id="eliminar" onclick="eliminar('${doc.id}')"><i class="large material-icons">delete</i></button>
-        
+      <div class= "likeCount"><button class="btn btn-primary"id='${doc.id}' onclick="addLikes('${doc.id}', '${doc.data().like}')"><i class="large material-icons">thumb_up</i></button>
+        <button class="btn btn-primary" onclick="editPost('${doc.id}','${ doc.data().publicacion}')"><i class="large material-icons">mode_edit</i></button>
+        <button class="btn btn-primary" id="eliminar" onclick="ConfirmDelete('${doc.id}')"><i class="large material-icons">delete</i></button>
+        </div>
       </div>
-      </div>`
+      </div>
+      `
 
           });
         });
@@ -233,7 +236,85 @@ function eliminar(id){
     console.error("Error removing document: ", error);
 
 });
+    
 
 
 
 }
+
+function editPost (id, postear) {
+  document.getElementById("post").value=postear;
+  var boton=document.getElementById("btnPost");
+  boton.innerHTML = "Editar";
+  boton.onclick = function(){
+  var washingtonRef = db.collection("posts").doc(id);	
+
+var nombre =document.getElementById("post").value;
+
+  }
+return washingtonRef.update({ 
+
+  publicacion: posteo.value,
+})
+
+.then(function() {
+
+    console.log("Document successfully updated!");
+    boton.innerHTML = "guardar";
+    document.getElementById("post").value = "";
+})
+
+.catch(function(error) {
+    // The document probably doesn't exist.
+    console.error("Error updating document: ", error);
+
+});	
+
+}
+//función de confirmacion de eliminar
+function ConfirmDelete(id)
+{
+  let message = confirm("¿Estás seguro de eliminarlo?");
+  if (message)
+  eliminar(id);
+  else
+    return false;
+}
+//función de like
+
+
+
+
+function addLikes(id, likes) {
+  likes++;
+
+  likes = parseInt(likes);
+  let washingtonRef = db.collection("posts").doc(id);
+
+  return washingtonRef
+    .update({
+      like: likes,
+      
+    }).then(function(){
+      let washingtonRef = (db.collection("posts").doc(id)).id;
+    
+       let buttonLike= document.getElementById(washingtonRef);
+        buttonLike.innerHTML+= " " + likes;
+      })
+    .then(function() {
+      console.log('Document successfully updated!');
+    })
+
+    .catch(function(error) {
+      // The document probably doesn't exist.
+      console.error('Error updating document: ', error);
+    });
+}
+
+
+ 
+ 
+
+/***************Inicializa la aplicación**********************/
+
+app.startup()
