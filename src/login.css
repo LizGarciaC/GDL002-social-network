@@ -44,7 +44,7 @@ body{
     height: 530px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    top: 54%;
+    top: 64%;
     left: 50%;
     position: absolute;
     transform: translate(-50%,-50%);
@@ -187,7 +187,7 @@ and (max-device-width : 823px) {
     height: 540px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    top: 54%;
+    top: 60%;
     left: 50%;
     position: absolute;
     transform: translate(-50%,-50%);
