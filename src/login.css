@@ -187,7 +187,7 @@ and (max-device-width : 823px) {
     height: 540px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    top: 60%;
+    top: 54%;
     left: 50%;
     position: absolute;
     transform: translate(-50%,-50%);
