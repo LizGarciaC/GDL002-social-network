@@ -293,7 +293,7 @@ window.app = {
   // Función para crear los espacios de los posts dinamicamente
 
   crearKardexItem: (item) => {
-    return ` <div class="card text-center widget2">
+    return ` <div class="card text-center">
     <div class="card-header widget2">
       <i class="large material-icons">person</i>
       ${ item.data().user}  ${item.data().isPrivate}
@@ -302,7 +302,7 @@ window.app = {
       <h5 class="card-title"></h5>
       <p class="card-text">${ item.data().publicacion} </p>
     </div>
-    <div class="card-footer text-muted widget2 mb-3">
+    <div class="card-footer text-muted mb-3">
     <button class="likeCount"><button class="btn btn-info" id='${item.id}' onclick="app.addLikes('${item.id}' , '${item.data().like}')"><i class="large material-icons" >thumb_up</i></button>
     <button class="btn btn-info" onclick="app.editPost('${item.id}','${item.data().publicacion}')"><i class="large material-icons">mode_edit</i></button>
     <button class="btn btn-info" id="eliminar" onclick="app.eliminar('${item.id}')"><i class="large material-icons">delete</i></button><br>

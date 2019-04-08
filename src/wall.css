@@ -303,6 +303,7 @@ color: #474747;
   padding: .5em;
   background-color: #9ECDD1;
   color: #a2a6a7;
+  font-family: 'Lato';
 }
 
 .publish{
@@ -313,7 +314,7 @@ color: #474747;
 }
 
 .widget2 { 
-background-color: #fff;
+background-color: #eaeaea;
 color: #1C1D21;
 }
 
