@@ -59,7 +59,7 @@ body{
 .bienvenida p{
   margin: 0;
   padding: 0;
-  font-weight: bold;
+
 }
 
 .textBienvenida {
@@ -95,4 +95,61 @@ body{
  .entrar:hover {
   background: #318aac;
   color: #fff !important;
+ }
+
+ @media only screen 
+ and (min-device-width : 768px) 
+ and (max-device-width : 1024px)  {
+
+/* contenido */
+
+.bienvenida {
+  width: 490px;
+  height: 500px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  top: 40%;
+  left: 65%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+  padding: 28px 30px;
+  margin-left: 
+  
+}
+
+
+.bienvenida p{
+  margin: 0;
+  padding: 0;
+
+}
+
+.textBienvenida {
+  font-family: 'Loto';
+  font-size: 30px;
+  margin-top: px;
+}
+
+.textBienvenida2 {
+  font-family: 'Loto';
+  font-size: 28px;
+}
+
+.entrar {
+  width: 100%;
+  text-align: center;
+  padding: 3%;
+  display: inline-block;
+  color: #fff !important;
+  font-size: 24px;
+  font-weight: 500;
+  padding: 0.5em 1.2em;
+  background: #318aac;
+  border: 2px solid;
+  border-color: #318aac;
+  transition: all 1s ease;
+  position: relative;
+ }
+
  }

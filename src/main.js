@@ -288,8 +288,8 @@ const app = {
   // Función para crear los espacios de los posts dinamicamente
 
   crearKardexItem: (item) => {
-    return ` <div class="card text-center">
-    <div class="card-header my-3 mx-6">
+    return ` <div class="card text-center widget2">
+    <div class="card-header widget2">
       <i class="large material-icons">person</i>
       ${ item.data().user.userName}  ${item.data().isPrivate}
     </div>
@@ -297,15 +297,14 @@ const app = {
       <h5 class="card-title"></h5>
       <p class="card-text">${ item.data().publicacion} </p>
     </div>
-    <div class="card-footer text-muted">
-    <div class="card-footer text-muted">
-   ${new Date(item.data().timestamp)}
+    <div class="card-footer text-muted widget2 mb-3">
+    <button class="likeCount"><button class="btn btn-info" id='${item.id}' onclick="app.addLikes('${item.id}' , '${item.data().like}')"><i class="large material-icons" >thumb_up</i></button>
+    <button class="btn btn-info" onclick="app.editPost('${item.id}','${item.data().publicacion}')"><i class="large material-icons">mode_edit</i></button>
+    <button class="btn btn-info" id="eliminar" onclick="app.eliminar('${item.id}')"><i class="large material-icons">delete</i></button><br>
     </div>
-      <div class="likeCount"><button class="btn btn-info" id='${item.id}' onclick="app.addLikes('${item.id}' , '${item.data().like}')"><i class="large material-icons" >thumb_up</i></button>
-      <button class="btn btn-info" onclick="app.editPost('${item.id}','${item.data().publicacion}')"><i class="large material-icons">mode_edit</i></button>
-      <button class="btn btn-info" id="eliminar" onclick="app.eliminar('${item.id}')"><i class="large material-icons">delete</i></button>
+    <div>
+    ${new Date(item.data().timestamp)}
       </div>
-    </div>
     </div>`
   },
   // Función para borrar post
