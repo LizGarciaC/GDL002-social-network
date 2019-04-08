@@ -12,8 +12,10 @@
   "dependencies": {
     "awesomplete": "^1.1.4",
     "chai-sorted": "^0.2.0",
-    "eslint": "^5.9.0",
+    "eslint": "^5.16.0",
     "eslint-plugin-jest": "^22.1.2",
+    "eslint-plugin-promise": "^4.1.1",
+    "firebase-mock": "^2.2.10",
     "htmlhint": "^0.10.1",
     "jest": "^23.6.0",
     "node.js": "0.0.0"

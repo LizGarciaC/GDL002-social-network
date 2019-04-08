@@ -1,4 +1,4 @@
-const app = {
+window.app = {
   //***************Inicializa los observadores******************//
   startup: () => {
     //***************Observador Navegacion********************//
@@ -15,7 +15,7 @@ const app = {
 
   //**********************Carga Páginas************************//
   loadPage: (user) => {
-    if (window.location.hash == "#") {
+    if (window.location.hash === "#") {
       return;
     }
 
@@ -23,9 +23,10 @@ const app = {
       '': "landing.html",
       '#login': "login.html",
       '#createaccount': "createaccount.html",
+      '#wall': "landing.html"
     };
 
-    if (user == null) {
+    if (user === null) {
       // User is logged out
       fetch(routes[window.location.hash])
         .then((response) => response.text())
@@ -33,22 +34,22 @@ const app = {
           // Cargar el contenido del archivo HTML en section de main, de index.html
           document.querySelector("#main").innerHTML = html;
           app.loadEvents();
+          return;
         })
         .catch((error) => {
           console.warn(error);
         });
     } else {
-      if (window.location.hash != "") {
-        fetch("wall.html")
-          .then((response) => response.text())
-          .then((html) => {
-            document.querySelector("#main").innerHTML = html;
-            app.loadEvents();
-          })
-          .catch((error) => {
-            console.warn(error);
-          });
-      }
+      fetch("wall.html")
+        .then((response) => response.text())
+        .then((html) => {
+          document.querySelector("#main").innerHTML = html;
+          app.loadEvents();
+          return;
+        })
+        .catch((error) => {
+          console.warn(error);
+        });
     }
 
   },
@@ -59,7 +60,7 @@ const app = {
   loadEvents: () => {
 
     // *************** Evento para hacer login ******************//
-    if (document.querySelector("#login") != null) {
+    if (document.querySelector("#login") !== null) {
       document.querySelector("#login").addEventListener("click", () => {
         const email2 = document.querySelector("#email2").value;
         const pass2 = document.querySelector("#pass2").value;
@@ -74,7 +75,7 @@ const app = {
     }
 
     // *************** Evento Crear Cuenta ó Registro Usuario Nuevo ******************//
-    if (document.querySelector("#registered") != null) {
+    if (document.querySelector("#registered") !== null) {
       document.querySelector("#registered").addEventListener('click', () => {
 
         const email = document.querySelector("#email").value;
@@ -82,7 +83,7 @@ const app = {
 
         firebase.auth()
           .createUserWithEmailAndPassword(email, pass)
-          .catch(function (error) {
+          .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             //alert(errorMessage);
@@ -95,17 +96,18 @@ const app = {
     }
 
     //   ***************Iniciar sesión con Google******************//
-    if (document.querySelector("#loginGoogle") != null) {
+    if (document.querySelector("#loginGoogle") !== null) {
       document.querySelector("#loginGoogle").addEventListener('click', () => {
         let provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function (result) {
+        firebase.auth().signInWithPopup(provider).then((result) => {
           // This gives you a Google Access Token. You can use it to access the Google API.
           let token = result.credential.accessToken;
           // The signed-in user info.
           let user = result.user;
           //alert("Exito");
           // ...
-        }).catch(function (error) {
+          return;
+        }).catch((error) => {
           // Handle Errors here.
           let errorCode = error.code;
           let errorMessage = error.message;
@@ -113,24 +115,25 @@ const app = {
           let email = error.email;
           // The firebase.auth.AuthCredential type that was used.
           let credential = error.credential;
-          alert("Falla");
+          // alert("Falla");
           // ...
         });
       });
     }
 
     // ***************Iniciar sesión con Facebook******************//
-    if (document.querySelector("#loginFb") != null) {
+    if (document.querySelector("#loginFb") !== null) {
       document.querySelector("#loginFb").addEventListener('click', () => {
 
         let provider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function (result) {
+        firebase.auth().signInWithPopup(provider).then((result) => {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
           let token = result.credential.accessToken;
           // The signed-in user info.
           let user = result.user;
           // ...
-        }).catch(function (error) {
+          return;
+        }).catch((error) => {
           // Handle Errors here.
           let errorCode = error.code;
           let errorMessage = error.message;
@@ -144,11 +147,11 @@ const app = {
     }
 
     // *************** Logout ******************//
-    if (document.querySelector("#logOut") != null) {
+    if (document.querySelector("#logOut") !== null) {
       document.querySelector("#logOut").addEventListener('click', () => {
         console.log("logOut");
         firebase.auth().signOut()
-          .catch(function (error) {
+          .catch((error) => {
             // An error happened
           });
       });
@@ -156,7 +159,7 @@ const app = {
 
     // *************** Wall Test ******************//
     // Funcion para menú de navegación
-    if (document.querySelector(".nav-trigger") != null) {
+    if (document.querySelector(".nav-trigger") !== null) {
       document.querySelector(".nav-trigger").addEventListener('click', (event) => {
         event.preventDefault();
         document.querySelector("body").classList.toggle('nav-open');
@@ -165,28 +168,29 @@ const app = {
 
     // Funcion para agregar post
 
-    if (document.querySelector("#btnPost") != null) {
-      window.location.hash = "#wall";
+    if (document.querySelector("#btnPost") !== null) {
+      // window.location.hash = "#wall";
       document.querySelector("#btnPost").addEventListener("click", () => {
-        
+
         let db = firebase.firestore();
-        let like=0;
+        let like = 0;
         const posteo = document.querySelector("#post");
-        if (app.washingtonRef == null) {
+        if (app.washingtonRef === null) {
           db.collection("posts").add({
             user: firebase.auth().currentUser.email,
             timestamp: Date.now(),
             publicacion: posteo.value,
-            like:like,
+            like: like,
             isPrivate: document.querySelector("#Filter").selectedOptions[0].value
           })
 
-            .then(function (docRef) {
+            .then((docRef) => {
               console.log("Document written with ID: ", docRef.id);
               document.getElementById("post").value = "";
               washingtonRef = null;
+              return;
             })
-            .catch(function (error) {
+            .catch((error) => {
               console.error("Error adding document: ", error);
             });
 
@@ -197,12 +201,13 @@ const app = {
 
           })
 
-            .then(function () {
+            .then(() => {
               console.log("Document successfully updated!");
               document.getElementById("post").value = "";
               washingtonRef = null;
+              return;
             })
-            .catch(function (error) {
+            .catch((error) => {
               // The document probably doesn't exist.
               console.error("Error updating document: ", error);
             });
@@ -239,7 +244,7 @@ const app = {
 
     // *************** Filtrar elementos publicos******************//
 
-    if (document.querySelector("#btnShowPublic") != null) {
+    if (document.querySelector("#btnShowPublic") !== null) {
       // window.location.hash = "#wall";
       document.querySelector("#btnShowPublic").addEventListener("click", () => {
 
@@ -251,7 +256,7 @@ const app = {
         db.collection("posts").onSnapshot((querySnapshot) => {
           wallPost.innerHTML = "";
           querySnapshot.forEach((doc) => {
-            if (doc.data().isPrivate == "publico") {
+            if (doc.data().isPrivate === "publico") {
               console.log(`${doc.id} => ${doc.data().publicacion}`);
               wallPost.innerHTML += app.crearKardexItem(doc);
             }
@@ -262,7 +267,7 @@ const app = {
 
     // *************** Filtrar elementos privados ******************//
 
-    if (document.querySelector("#btnShowPrivate") != null) {
+    if (document.querySelector("#btnShowPrivate") !== null) {
       // window.location.hash = "#wall";
       document.querySelector("#btnShowPrivate").addEventListener("click", () => {
 
@@ -275,7 +280,7 @@ const app = {
         db.collection("posts").onSnapshot((querySnapshot) => {
           wallPost.innerHTML = "";
           querySnapshot.forEach((doc) => {
-            if (doc.data().isPrivate == "privado") {
+            if (doc.data().isPrivate === "privado") {
               console.log(`${doc.id} => ${doc.data().publicacion}`);
               wallPost.innerHTML += app.crearKardexItem(doc);
             }
@@ -291,7 +296,7 @@ const app = {
     return ` <div class="card text-center">
     <div class="card-header my-3 mx-6">
       <i class="large material-icons">person</i>
-      ${ item.data().user.userName}  ${item.data().isPrivate}
+      ${ item.data().user.email}  ${item.data().isPrivate}
     </div>
     <div class="card-body">
       <h5 class="card-title"></h5>
@@ -299,7 +304,7 @@ const app = {
     </div>
     <div class="card-footer text-muted">
     <div class="card-footer text-muted">
-   ${new Date(item.data().timestamp)}
+   ${app.dateFormat(item.data().timestamp)}
     </div>
       <div class="likeCount"><button class="btn btn-info" id='${item.id}' onclick="app.addLikes('${item.id}' , '${item.data().like}')"><i class="large material-icons" >thumb_up</i></button>
       <button class="btn btn-info" onclick="app.editPost('${item.id}','${item.data().publicacion}')"><i class="large material-icons">mode_edit</i></button>
@@ -308,6 +313,13 @@ const app = {
     </div>
     </div>`
   },
+
+  // Funcion para dar formato a la fecha ()
+  dateFormat: (timestamp) => {
+    let date = new Date(timestamp);
+    return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+  },
+
   // Función para borrar post
 
 
@@ -330,27 +342,31 @@ const app = {
   eliminar: (id) => {
     washingtonRef = null;
     let db = firebase.firestore();
+    let returnMessage = true;
 
     let message = confirm("¿Estás seguro de eliminarlo?");
-          
+
     if (message) {
 
-      db.collection("posts").doc(id).delete().then(function () {
+      db.collection("posts").doc(id).delete().then(() => {
 
         console.log("Document successfully deleted!");
+        return;
 
-      }).catch(function (error) {
+      }).catch((error) => {
 
         console.error("Error removing document: ", error);
       });
     }
     else {
-      return false;}
-    },
+      returnMessage = false;
+    }
+    return returnMessage;
+  },
 
 
   // Función para modificar posts
- washingtonRef: null,
+  washingtonRef: null,
   editPost: (id, posteo) => {
     let db = firebase.firestore();
     document.getElementById("post").value = posteo;
@@ -359,33 +375,35 @@ const app = {
     app.washingtonRef = db.collection("posts").doc(id);
   },
 
-  addLikes: (id, likes)=> {
+  addLikes: (id, likes) => {
     let db = firebase.firestore();
     likes++;
-    likes=parseInt(likes);
+    likes = parseInt(likes);
     let washingtonRef = db.collection("posts").doc(id);
-    
+
     return washingtonRef
-        .update({
-          like: likes,
-          
-        }).then(function(){
-          let washingtonRef = (db.collection("posts").doc(id)).id;
-        
-           let buttonLike= document.getElementById(washingtonRef);
-            buttonLike.innerHTML+= " " + likes;
-            console.log(likes);
-          })
-        .then(function() {
-          console.log('Document successfully updated!');
-        })
-    
-        .catch(function(error) {
-          // The document probably doesn't exist.
-          console.error('Error updating document: ', error);
-        });
-    },
-   
+      .update({
+        like: likes,
+
+      }).then(() => {
+        let washingtonRef = (db.collection("posts").doc(id)).id;
+
+        let buttonLike = document.getElementById(washingtonRef);
+        buttonLike.innerHTML += " " + likes;
+        console.log(likes);
+        return;
+      })
+      .then(() => {
+        console.log('Document successfully updated!');
+        return;
+      })
+
+      .catch((error) => {
+        // The document probably doesn't exist.
+        console.error('Error updating document: ', error);
+      });
+  },
+
 }
 
 
@@ -398,10 +416,10 @@ const app = {
 //   return washingtonRef
 //     .update({
 //       like: likes,
-      
+
 //     }).then(function(){
 //       let washingtonRef = (db.collection("posts").doc(id)).id;
-    
+
 //        let buttonLike= document.getElementById(washingtonRef);
 //         buttonLike.innerHTML+= " " + likes;
 //       })
