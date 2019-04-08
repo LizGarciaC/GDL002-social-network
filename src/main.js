@@ -316,7 +316,8 @@ window.app = {
   // Funcion para dar formato a la fecha ()
   dateFormat: (timestamp) => {
     let date = new Date(timestamp);
-    return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+    return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " "
+      + date.getHours() + ":" + date.getMinutes();
   },
 
   // Función para borrar post

@@ -1,5 +1,5 @@
 
-
+var assert = require('assert');
 // // ********************Código para pruebas funcionale en Firebase ********************
 
 const firebasemock = require('firebase-mock');
@@ -69,14 +69,37 @@ describe('washingtonRef', () => {
         expect(typeof app.washingtonRef).toBe('object');
     });
 });
-// describe('authenticateEmailAndPassword', () => {
+
+it('deberia crear dos observadores', () => {
+    assert.equal(app.startup(), null);
+});
+
+it('deberia agregar todos los eventos', () => {
+    assert.equal(app.loadEvents(), null);
+});
+
+it('deberia crear un nuevo mensaje en pantalla', () => {
+    expect(typeof app.crearKardexItem({
+        data: () => {
+            return {
+                user: "user@test.com",
+                timestamp: Date.now(),
+                publicacion: "Nuevo mensaje",
+                like: "1",
+                isPrivate: "privado"
+            }
+        }
+    })).toBe('string');
+});
+// describe('STARTUP', () => {
 //     it('Debería poder iniciar sesion', () => {
-//         return authenticateEmailAndPassword('front@end.la', '123456')
+//         return app.startup()
 //             .then((user) => {
 //                 expect(user.email).toBe('front@end.la');
 //             });
 //     });
 // });
+
 // describe('createUserWithEmailAndPassword', () => {
 //     it('Debería poder crear un usuario', () => {
 //         return createUserWithEmailAndPassword('front@end.la', '123456')
