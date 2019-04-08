@@ -41,10 +41,10 @@ body{
 
    .loginBox {
     width: 320px;
-    height: 500px;
+    height: 530px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    top: 60%;
+    top: 54%;
     left: 50%;
     position: absolute;
     transform: translate(-50%,-50%);
@@ -62,6 +62,7 @@ body{
     font-family: 'Lato';
     font-size: 25px;
     margin-top: -10%;
+    margin-bottom: 3%;
   }
   
   
@@ -69,7 +70,7 @@ body{
     margin: 0;
     padding: 0;
     font-weight: bold;
-    font-family: 'Loto';
+    font-family: 'Lato';
     font-size: 18px;
   }
 
@@ -86,6 +87,7 @@ body{
     height: 22px;
     color: #fff;
     font-size: 16px;
+    font-family: 'Lato';
   }
   .loginBox input[type="button"]
   {
@@ -96,6 +98,7 @@ body{
     background: #318aac;
     color: #fff;
     font-size: 18px;
+    font-family: 'Lato';
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -115,7 +118,7 @@ body{
     text-decoration: none;
     font-size: 18px;
     color: #fff;
-    font-family: 'Loto';
+    font-family: 'Lato';
     font-weight: bold;
   }
   .loginBox a:hover
@@ -174,3 +177,170 @@ body{
         color: #fff;
         font-family: 'Lato';
       }
+
+      @media only screen
+and (min-device-width : 370px)
+and (max-device-width : 823px) {
+
+  .loginBox {
+    width: 320px;
+    height: 540px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 54%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 35px 30px;
+  }
+      }
+
+
+      @media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+  .loginBox {
+    width: 420px;
+    height: 740px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 53%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 79px 30px;
+  }
+
+  p {
+    text-align: left;
+  }
+
+  h3 {
+    margin: 0;
+    padding: 0 0 20px;
+    font-family: 'Lato';
+    font-size: 36px;
+    margin-top: -10%;
+    margin-bottom: 3%;
+  }
+  
+  
+  .loginBox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-family: 'Lato';
+    font-size: 25px;
+  }
+
+  .loginBox input{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .loginBox input[type="email"], input[type="password"], input[type="user"]
+  {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 55px;
+    color: #fff;
+    font-size: 22px;
+    font-family: 'Lato';
+  }
+  .loginBox input[type="button"]
+  {
+    width: 175px;
+    border: none;
+    outline: none;
+    height: 45px;
+    background: #318aac;
+    color: #fff;
+    font-size: 24px;
+    font-family: 'Lato';
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    margin-left: 28%;
+    margin-top: 3%;
+}
+
+  .loginBox input[type="button"]:hover
+  {
+    cursor: pointer;
+    background: #D4DADC;
+    color: #000;
+  }
+  
+  .loginBox a{
+    text-decoration: none;
+    font-size: 22px;
+    color: #fff;
+    font-family: 'Lato';
+    font-weight: bold;
+    margin-bottom: 4%;
+  }
+  .loginBox a:hover
+  {
+    color: #049899;
+  }
+  
+  .fb {
+    border: none;
+    background: #3b5998;
+    width: 175px;
+    height: 45px;
+    font-family: 'Lato';
+    font-size: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border: 1px solid #29487d;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition:all 0.3s linear;
+    text-align: center;
+    float: none;
+    margin-left: 23%;
+  }
+
+
+  button.fb:hover {
+    background: #fff;
+    color: #3b5998;
+    }
+
+    .google {
+      border: none;
+      background: orangered;
+      width: 175px;
+      height: 45px;
+      font-family: 'Lato';
+      font-size: 20px;
+      color: #fff;
+      text-transform: uppercase;
+      border-radius: 4px;
+      border: 1px solid #29487d;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition:all 0.3s linear;
+      margin-left: 23%;
+      }
+      
+      button.google:hover {
+      background: #fff;
+      color: #3b5998;
+      }
+      
+      ::placeholder {
+        color: #fff;
+        font-family: 'Lato';
+      }
+
+
+}
