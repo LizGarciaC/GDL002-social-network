@@ -1,5 +1,5 @@
-const app = {
-//***************Inicializa los observadores******************//
+window.app = {
+  //***************Inicializa los observadores******************//
   startup: () => {
     //***************Observador Navegacion********************//
     window.addEventListener("hashchange", () => {
@@ -12,10 +12,10 @@ const app = {
     });
   },
 
- 
+
   //**********************Carga Páginas************************//
   loadPage: (user) => {
-    if (window.location.hash == "#") {
+    if (window.location.hash === "#") {
       return;
     }
 
@@ -23,31 +23,33 @@ const app = {
       '': "landing.html",
       '#login': "login.html",
       '#createaccount': "createaccount.html",
+      '#wall': "landing.html"
     };
 
-    if (user == null) {
+    if (user === null) {
       // User is logged out
       fetch(routes[window.location.hash])
         .then((response) => response.text())
         .then((html) => {
-          document.querySelector("#main").innerHTML = html;  // Cargar el contenido del archivo HTML en section de main, de index.html
+          // Cargar el contenido del archivo HTML en section de main, de index.html
+          document.querySelector("#main").innerHTML = html;
           app.loadEvents();
+          return;
         })
         .catch((error) => {
           console.warn(error);
         });
     } else {
-      if (window.location.hash != "") {
-        fetch("wall.html")
-          .then((response) => response.text())
-          .then((html) => {
-            document.querySelector("#main").innerHTML = html;
-            app.loadEvents();
-          })
-          .catch((error) => {
-            console.warn(error);
-          });
-      }
+      fetch("wall.html")
+        .then((response) => response.text())
+        .then((html) => {
+          document.querySelector("#main").innerHTML = html;
+          app.loadEvents();
+          return;
+        })
+        .catch((error) => {
+          console.warn(error);
+        });
     }
 
   },
@@ -56,8 +58,9 @@ const app = {
 
   //******Agrega los eventos a los controles existentes********//
   loadEvents: () => {
+
     // *************** Evento para hacer login ******************//
-    if (document.querySelector("#login") != null) {
+    if (document.querySelector("#login") !== null) {
       document.querySelector("#login").addEventListener("click", () => {
         const email2 = document.querySelector("#email2").value;
         const pass2 = document.querySelector("#pass2").value;
@@ -72,7 +75,7 @@ const app = {
     }
 
     // *************** Evento Crear Cuenta ó Registro Usuario Nuevo ******************//
-    if (document.querySelector("#registered") != null) {
+    if (document.querySelector("#registered") !== null) {
       document.querySelector("#registered").addEventListener('click', () => {
 
         const email = document.querySelector("#email").value;
@@ -80,7 +83,7 @@ const app = {
 
         firebase.auth()
           .createUserWithEmailAndPassword(email, pass)
-          .catch(function (error) {
+          .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             //alert(errorMessage);
@@ -93,17 +96,18 @@ const app = {
     }
 
     //   ***************Iniciar sesión con Google******************//
-    if (document.querySelector("#loginGoogle") != null) {
+    if (document.querySelector("#loginGoogle") !== null) {
       document.querySelector("#loginGoogle").addEventListener('click', () => {
         let provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function (result) {
+        firebase.auth().signInWithPopup(provider).then((result) => {
           // This gives you a Google Access Token. You can use it to access the Google API.
           let token = result.credential.accessToken;
           // The signed-in user info.
           let user = result.user;
           //alert("Exito");
           // ...
-        }).catch(function (error) {
+          return;
+        }).catch((error) => {
           // Handle Errors here.
           let errorCode = error.code;
           let errorMessage = error.message;
@@ -111,24 +115,25 @@ const app = {
           let email = error.email;
           // The firebase.auth.AuthCredential type that was used.
           let credential = error.credential;
-          alert("Falla");
+          // alert("Falla");
           // ...
         });
       });
     }
 
     // ***************Iniciar sesión con Facebook******************//
-    if (document.querySelector("#loginFb") != null) {
+    if (document.querySelector("#loginFb") !== null) {
       document.querySelector("#loginFb").addEventListener('click', () => {
 
         let provider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function (result) {
+        firebase.auth().signInWithPopup(provider).then((result) => {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
           let token = result.credential.accessToken;
           // The signed-in user info.
           let user = result.user;
           // ...
-        }).catch(function (error) {
+          return;
+        }).catch((error) => {
           // Handle Errors here.
           let errorCode = error.code;
           let errorMessage = error.message;
@@ -142,11 +147,11 @@ const app = {
     }
 
     // *************** Logout ******************//
-    if (document.querySelector("#logOut") != null) {
+    if (document.querySelector("#logOut") !== null) {
       document.querySelector("#logOut").addEventListener('click', () => {
         console.log("logOut");
         firebase.auth().signOut()
-          .catch(function (error) {
+          .catch((error) => {
             // An error happened
           });
       });
@@ -154,8 +159,8 @@ const app = {
 
     // *************** Wall Test ******************//
     // Funcion para menú de navegación
-    if (document.querySelector(".nav-trigger") != null) {
-      document.querySelector(".nav-trigger").addEventListener('click', () => {
+    if (document.querySelector(".nav-trigger") !== null) {
+      document.querySelector(".nav-trigger").addEventListener('click', (event) => {
         event.preventDefault();
         document.querySelector("body").classList.toggle('nav-open');
       });
@@ -163,30 +168,53 @@ const app = {
 
     // Funcion para agregar post
 
-    if (document.querySelector("#btnPost") != null) {
-      window.location.hash = "#wall";
+    if (document.querySelector("#btnPost") !== null) {
+      // window.location.hash = "#wall";
       document.querySelector("#btnPost").addEventListener("click", () => {
+
         let db = firebase.firestore();
-        let like=0;
+        let like = 0;
         const posteo = document.querySelector("#post");
-        db.collection("posts").add({
-          user: firebase.auth().currentUser.email,
-          timestamp: Date.now(),
-          publicacion: posteo.value,
-          like:like,
-          isPrivate: document.querySelector("#Filter").selectedOptions[0].value
-        })
-          .then(function (docRef) {
-            console.log("Document written with ID: ", docRef.id);
-            document.getElementById("post").value = "";
+        if (app.washingtonRef === null) {
+          db.collection("posts").add({
+            user: firebase.auth().currentUser.email,
+            timestamp: Date.now(),
+            publicacion: posteo.value,
+            like: like,
+            isPrivate: document.querySelector("#Filter").selectedOptions[0].value
           })
-          .catch(function (error) {
-            console.error("Error adding document: ", error);
-          });
+
+            .then((docRef) => {
+              console.log("Document written with ID: ", docRef.id);
+              document.getElementById("post").value = "";
+              washingtonRef = null;
+              return;
+            })
+            .catch((error) => {
+              console.error("Error adding document: ", error);
+            });
+
+        } else {
+          app.washingtonRef.update({
+            publicacion: posteo.value,
 
 
+          })
 
-        // Función para mostrar en pantalla las publicaciones de usuarios
+            .then(() => {
+              console.log("Document successfully updated!");
+              document.getElementById("post").value = "";
+              washingtonRef = null;
+              return;
+            })
+            .catch((error) => {
+              // The document probably doesn't exist.
+              console.error("Error updating document: ", error);
+            });
+        }
+
+
+        // Función para mostrar en pantalla todas publicaciones de usuarios despúes de insertar un valor nuevo
 
         let wallPost = document.querySelector("#wallContainer");
 
@@ -195,126 +223,222 @@ const app = {
           wallPost.innerHTML = "";
           querySnapshot.forEach((doc) => {
             console.log(`${doc.id} => ${doc.data().publicacion}`);
+            wallPost.innerHTML += app.crearKardexItem(doc);
+          });
+        });
+      });
 
-            wallPost.innerHTML += ` <div class="card text-center">
-      <div class="card-header my-3 mx-6">
-        <i class="large material-icons">person</i>
-        ${ doc.data().user} 
-      </div>
-      <div class="card-body">
-        <h5 class="card-title"></h5>
-        <p class="card-text">${ doc.data().publicacion} </p>
-      </div>
-      <div class="card-footer text-muted">
-      <div class= "likeCount"><button class="btn btn-primary"id='${doc.id}' onclick="addLikes('${doc.id}', '${doc.data().like}')"><i class="large material-icons">thumb_up</i></button>
-        <button class="btn btn-primary" onclick="editPost('${doc.id}','${ doc.data().publicacion}')"><i class="large material-icons">mode_edit</i></button>
-        <button class="btn btn-primary" id="eliminar" onclick="ConfirmDelete('${doc.id}')"><i class="large material-icons">delete</i></button>
-        </div>
-      </div>
-      </div>
-      `
+      // Función para mostrar en pantalla las publicaciones de usuarios cuando carga la página
+      let db = firebase.firestore();
 
+      let wallPost = document.querySelector("#wallContainer");
+
+      db.collection("posts").onSnapshot((querySnapshot) => {
+        wallPost.innerHTML = "";
+        querySnapshot.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data().publicacion}`);
+          wallPost.innerHTML += app.crearKardexItem(doc);
+        });
+      });
+    }
+
+    // *************** Filtrar elementos publicos******************//
+
+    if (document.querySelector("#btnShowPublic") !== null) {
+      // window.location.hash = "#wall";
+      document.querySelector("#btnShowPublic").addEventListener("click", () => {
+
+        let db = firebase.firestore();
+
+        // Función para mostrar en pantalla las publicaciones de usuarios
+        let wallPost = document.querySelector("#wallContainer");
+
+        db.collection("posts").onSnapshot((querySnapshot) => {
+          wallPost.innerHTML = "";
+          querySnapshot.forEach((doc) => {
+            if (doc.data().isPrivate === "publico") {
+              console.log(`${doc.id} => ${doc.data().publicacion}`);
+              wallPost.innerHTML += app.crearKardexItem(doc);
+            }
           });
         });
       });
     }
-  }
-}
 
-let db = firebase.firestore();
+    // *************** Filtrar elementos privados ******************//
 
+    if (document.querySelector("#btnShowPrivate") !== null) {
+      // window.location.hash = "#wall";
+      document.querySelector("#btnShowPrivate").addEventListener("click", () => {
 
-
-function eliminar(id){
-
-  db.collection("posts").doc(id).delete().then(function() {
-
-    console.log("Document successfully deleted!");
-
-}).catch(function(error) {
-
-    console.error("Error removing document: ", error);
-
-});
-    
+        let db = firebase.firestore();
 
 
+        // Función para mostrar en pantalla las publicaciones de usuarios
+        let wallPost = document.querySelector("#wallContainer");
 
-}
+        db.collection("posts").onSnapshot((querySnapshot) => {
+          wallPost.innerHTML = "";
+          querySnapshot.forEach((doc) => {
+            if (doc.data().isPrivate === "privado") {
+              console.log(`${doc.id} => ${doc.data().publicacion}`);
+              wallPost.innerHTML += app.crearKardexItem(doc);
+            }
+          });
+        });
+      });
+    }
+  },
 
-function editPost (id, postear) {
-  document.getElementById("post").value=postear;
-  var boton=document.getElementById("btnPost");
-  boton.innerHTML = "Editar";
-  boton.onclick = function(){
-  var washingtonRef = db.collection("posts").doc(id);	
+  // Función para crear los espacios de los posts dinamicamente
 
-var nombre =document.getElementById("post").value;
+  crearKardexItem: (item) => {
+    return ` <div class="card text-center">
+    <div class="card-header widget2">
+      <i class="large material-icons">person</i>
+      ${ item.data().user}  ${item.data().isPrivate}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <p class="card-text">${ item.data().publicacion} </p>
+    </div>
+    <div class="card-footer text-muted mb-3">
+    <button class="likeCount"><button class="btn btn-info" id='${item.id}' onclick="app.addLikes('${item.id}' , '${item.data().like}')"><i class="large material-icons" >thumb_up</i></button>
+    <button class="btn btn-info" onclick="app.editPost('${item.id}','${item.data().publicacion}')"><i class="large material-icons">mode_edit</i></button>
+    <button class="btn btn-info" id="eliminar" onclick="app.eliminar('${item.id}')"><i class="large material-icons">delete</i></button><br>
+    </div>
+    <div>
+    ${app.dateFormat(item.data().timestamp)}
+      </div>
+    </div>`
+  },
 
-  }
-return washingtonRef.update({ 
+  // Funcion para dar formato a la fecha ()
+  dateFormat: (timestamp) => {
+    let date = new Date(timestamp);
+    return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " "
+      + date.getHours() + ":" + date.getMinutes();
+  },
 
-  publicacion: posteo.value,
-})
-
-.then(function() {
-
-    console.log("Document successfully updated!");
-    boton.innerHTML = "guardar";
-    document.getElementById("post").value = "";
-})
-
-.catch(function(error) {
-    // The document probably doesn't exist.
-    console.error("Error updating document: ", error);
-
-});	
-
-}
-//función de confirmacion de eliminar
-function ConfirmDelete(id)
-{
-  let message = confirm("¿Estás seguro de eliminarlo?");
-  if (message)
-  eliminar(id);
-  else
-    return false;
-}
-//función de like
+  // Función para borrar post
 
 
 
+  // eliminar: (id) => {
+  //   washingtonRef = null;
+  //   let db = firebase.firestore();
+  //   db.collection("posts").doc(id).delete().then(function () {
 
-function addLikes(id, likes) {
-  likes++;
+  //     console.log("Document successfully deleted!");
 
-  likes = parseInt(likes);
-  let washingtonRef = db.collection("posts").doc(id);
+  //   }).catch(function (error) {
 
-  return washingtonRef
-    .update({
-      like: likes,
-      
-    }).then(function(){
-      let washingtonRef = (db.collection("posts").doc(id)).id;
-    
-       let buttonLike= document.getElementById(washingtonRef);
-        buttonLike.innerHTML+= " " + likes;
+  //     console.error("Error removing document: ", error);
+
+  //   });
+
+  // },
+
+  eliminar: (id) => {
+    washingtonRef = null;
+    let db = firebase.firestore();
+    let returnMessage = true;
+
+    let message = confirm("¿Estás seguro de eliminarlo?");
+
+    if (message) {
+
+      db.collection("posts").doc(id).delete().then(() => {
+
+        console.log("Document successfully deleted!");
+        return;
+
+      }).catch((error) => {
+
+        console.error("Error removing document: ", error);
+      });
+    }
+    else {
+      returnMessage = false;
+    }
+    return returnMessage;
+  },
+
+
+  // Función para modificar posts
+  washingtonRef: null,
+  editPost: (id, posteo) => {
+    let db = firebase.firestore();
+    document.getElementById("post").value = posteo;
+    var boton = document.getElementById("btnPost");
+    //boton.innerHTML = "Editar";
+    app.washingtonRef = db.collection("posts").doc(id);
+  },
+
+  addLikes: (id, likes) => {
+    let db = firebase.firestore();
+    likes++;
+    likes = parseInt(likes);
+    let washingtonRef = db.collection("posts").doc(id);
+
+    return washingtonRef
+      .update({
+        like: likes,
+
+      }).then(() => {
+        let washingtonRef = (db.collection("posts").doc(id)).id;
+
+        let buttonLike = document.getElementById(washingtonRef);
+        buttonLike.innerHTML += " " + likes;
+        console.log(likes);
+        return;
       })
-    .then(function() {
-      console.log('Document successfully updated!');
-    })
+      .then(() => {
+        console.log('Document successfully updated!');
+        return;
+      })
 
-    .catch(function(error) {
-      // The document probably doesn't exist.
-      console.error('Error updating document: ', error);
-    });
+      .catch((error) => {
+        // The document probably doesn't exist.
+        console.error('Error updating document: ', error);
+      });
+  },
+
 }
 
 
- 
- 
+// function addLikes(id, likes) {
+//   likes++;
+
+//   likes = parseInt(likes);
+//   let washingtonRef = db.collection("posts").doc(id);
+
+//   return washingtonRef
+//     .update({
+//       like: likes,
+
+//     }).then(function(){
+//       let washingtonRef = (db.collection("posts").doc(id)).id;
+
+//        let buttonLike= document.getElementById(washingtonRef);
+//         buttonLike.innerHTML+= " " + likes;
+//       })
+//     .then(function() {
+//       console.log('Document successfully updated!');
+//     })
+
+//     .catch(function(error) {
+//       // The document probably doesn't exist.
+//       console.error('Error updating document: ', error);
+//     });
+// }
+
+
+
+
+
+
+
 
 /***************Inicializa la aplicación**********************/
-
-app.startup()
+app.startup();

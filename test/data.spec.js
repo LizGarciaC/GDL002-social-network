@@ -1,137 +1,93 @@
-// require('../src/data.js');
 
-// const pokemon = require('../src/data/pokemon/pokemon.json');
-
-
-// describe("pokemon", ()=>{
-//   it("Should by an object", ()=>{
-//     expect(typeof pokemon).toBe("object");
-//   });
-// });
-
-// describe("filterData", ()=>{
-
-//   it("Should by a Function", ()=>{
-//     expect(typeof data.filterData).toBe("function");
-//   });
-
-//   it("Filter by name", () => {
-//   expect(data.filterData(pokemon.pokemon,'Charmander')).toBe(pokemon.pokemon[3]);
-//   });
-
-
-
-
-// });
-
-// describe ("sortData", ()=>{
-
-//    it("Shoul by a Function", ()=>{
-//     expect(typeof data.sortData).toBe("function");
-//   });
-
-//   it("Sort alphabetically by name", ()=>{
-//    expect(data.sortData(pokemon.pokemon) instanceof Array).toBe(true);
-//  });
-
-// });
-// //
-// describe("computeData",()=>{
-
-//   it("Shoul by a Function", ()=>{
-//    expect(typeof data.computeData).toBe("function");
-//  });
-
-
-//  it("Show a PowerCombat of Charmander ", () => {
-//   expect(data.computeData(pokemon.pokemon,'Charmander', 250)).toBe(412.5);
-//  });
-
-
-// });
-
+var assert = require('assert');
 // // ********************Código para pruebas funcionale en Firebase ********************
 
-// const firebasemock = require('firebase-mock');
-// const mockauth = new firebasemock.MockFirebase();
-// const mockfirestore = new firebasemock.MockFirestore();
-// mockfirestore.autoFlush();
-// mockauth.autoFlush();
-// global.firebase = firebasemock.MockFirebaseSdk(
-//   path => (path ? mockdatabase.child(path) : null),
-//   () => mockauth,
-//   () => mockfirestore
-// );
-// import { authenticateGoogleAccount,
-//   authenticateFacebookAccount,
-//   authenticateEmailAndPassword,
-//   createUserWithEmailAndPassword,
-//   closeSesion} from '../src/lib/index.js';
-// describe('authenticateGoogleAccount', () => {
-//   it('debería ser una función', () => {
-//     expect(typeof authenticateGoogleAccount).toBe('function');
-//   });
-// });
-// describe('authenticateFacebookAccount', () => {
-//   it('debería ser una función', () => {
-//     expect(typeof authenticateFacebookAccount).toBe('function');
-//   });
-// });
-// describe('authenticateEmailAndPassword', () => {
-//   it('debería ser una función', () => {
-//     expect(typeof authenticateEmailAndPassword).toBe('function');
-//   });
-// });
-// describe('createUserWithEmailAndPassword', () => {
-//   it('debería ser una función', () => {
-//     expect(typeof createUserWithEmailAndPassword).toBe('function');
-//   });
-// });
-// describe('authenticateEmailAndPassword', () => {
-//   it('Debería poder iniciar sesion', () => {
-//     return authenticateEmailAndPassword('front@end.la', '123456')
-//       .then((user) => {
-//         expect(user.email).toBe('front@end.la');
-//       });
-//   });
-// });
-// describe('createUserWithEmailAndPassword', () => {
-//   it('Debería poder crear un usuario', () => {
-//     return createUserWithEmailAndPassword('front@end.la', '123456')
-//       .then((user) => {
-//         expect(user.email).toBe('front@end.la');
-//       });
-//   });
-// });
-// describe('authenticateGoogleAccount', () => {
-//   it('Debería poder iniciar sesión', () => {
-//     return authenticateGoogleAccount()
-//       .then(() => {
-//         const user = firebase.auth().currentUser;
-//         expect(user).not.toBe(null);
-//       });
-//   });
-// });
-// describe('authenticateFacebookAccount', () => {
-//   it('Debería poder iniciar sesión', () => {
-//     return authenticateFacebookAccount()
-//       .then(() => {
-//         const user = firebase.auth().currentUser;
-//         expect(user).not.toBe(null);
-//       });
-//   });
-// });
-// describe('closeSesion', () => {
-//   it('debería ser una función', () => {
-//     expect(typeof closeSesion).toBe('function');
-//   });
-// });
-// describe('closeSesion', () => {
-//   it('Debería cerrar sesión', () => {
-//     return closeSesion()
-//       .then(() => {
-//         const user = firebase.auth().currentUser;
-//         expect(user).toBe(null);
-//       });
-//   });
-// });
+const firebasemock = require('firebase-mock');
+
+const mockauth = new firebasemock.MockFirebase();
+const mockfirestore = new firebasemock.MockFirestore();
+mockfirestore.autoFlush();
+mockauth.autoFlush();
+global.firebase = firebasemock.MockFirebaseSdk(
+    path => (path ? mockdatabase.child(path) : null),
+    () => mockauth,
+    () => mockfirestore
+);
+
+require('../src/main.js');
+
+describe('app', () => {
+    it('debería ser un objeto', () => {
+        expect(typeof app).toBe('object');
+    });
+});
+
+describe('startup', () => {
+    it('debería ser una función', () => {
+        expect(typeof app.startup).toBe('function');
+    });
+});
+
+describe('loadPage', () => {
+    it('debería ser una función', () => {
+        expect(typeof app.loadPage).toBe('function');
+    });
+});
+
+describe('loadEvents', () => {
+    it('debería ser una función', () => {
+        expect(typeof app.loadEvents).toBe('function');
+    });
+});
+
+describe('crearKardexItem', () => {
+    it('debería ser una función', () => {
+        expect(typeof app.crearKardexItem).toBe('function');
+    });
+});
+
+describe('eliminar', () => {
+    it('debería ser una función', () => {
+        expect(typeof app.eliminar).toBe('function');
+    });
+});
+
+describe('editPost', () => {
+    it('debería ser una función', () => {
+        expect(typeof app.editPost).toBe('function');
+    });
+});
+
+describe('addLikes', () => {
+    it('debería ser una función', () => {
+        expect(typeof app.addLikes).toBe('function');
+    });
+});
+
+describe('washingtonRef', () => {
+    it('debería ser una función', () => {
+        expect(typeof app.washingtonRef).toBe('object');
+    });
+});
+
+it('deberia crear dos observadores', () => {
+    assert.equal(app.startup(), null);
+});
+
+it('deberia agregar todos los eventos', () => {
+    assert.equal(app.loadEvents(), null);
+});
+
+it('deberia crear un nuevo mensaje en pantalla', () => {
+    expect(typeof app.crearKardexItem({
+        data: () => {
+            return {
+                user: "user@test.com",
+                timestamp: Date.now(),
+                publicacion: "Nuevo mensaje",
+                like: "1",
+                isPrivate: "privado"
+            }
+        }
+    })).toBe('string');
+});

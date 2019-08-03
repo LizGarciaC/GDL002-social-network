@@ -1,5 +1,36 @@
 # Creando una Red Social
 
+## Explora México
+
+### Es una red social en la cual el usuario podrá compartir fotos, publicaciones, videos y las experiencias de sus viajes en México. También podrán compartir y obtener información clave de cada lugar como por ejemplo: transporte, hospedajes, comida, entretenimiento, atracciones, etc. Toda ésta información será enriquecida por los mismos usuarios.
+
+### Además ésta Web App tiene como segundo objetivo crear una comunidad que sea consciente del cuidado del medio ambiente. El usuario encontrará un menú donde visualizará diferentes temas y tips para poder implementar y conocer las diferentes formas de cuidar nuestro planeta mientras se encuentra viajando.
+
+### Éste producto va dirigido principalmente a los viajeros que gustan de conocer nuevos lugares y compartir experiencias con una perspectiva ecológica. Sin embargo también esta diseñado para todas aquellas personas que deseen conocer más lugares de México y/o enriquecer a la comunidad con información.
+
+## Diseño
+
+### El producto esta diseñado con una estructura simple e intuitiva para que el usuario pueda leer y acceder facil a las distintas funcionalidades.
+
+### Diseñado con colores neutros y claros, con textos visibles, además de botones y listas desplegables funcionales
+
+## Historias de usuario
+
+![Nuestras historias de usuario son las siguientes](/src/images/histusuar.jpg)
+![Y](/src/images/histusuar2.jpg)
+
+## Prototipo de baja Fidelidad
+
+![Imagen](/src/images/bajafidelidad.jpeg)
+
+## Prototipo de alta fidelidad
+
+https://www.figma.com/file/xzXFw84oUf3Bs1UsDVn1G9/Explora-M%C3%A9xico-(Red-Social)?node-id=0%3A1
+
+
+## Problemas detectados a través de test de usabilidad
+
+### *Los usuarios nos indicaron que es difícil intuir los iconos que se encuentran en el segundo menú, por lo cual hicimos algunos cambios para que fuera mas sencillo pero aún nos encontramos trabajando en ello.
 
 
 ## Páginas Consultadas ó inspiración.
@@ -250,189 +281,4 @@ practique el aprendizaje de todas las habilidades esperadas. No se dividan el
 trabajo como en una fábrica**
 
 Para conocer a los usuario para eso debes salir e investigar. Tienes que
-ejercitar tus habilidades de comunicación y toma de decisiones.
-Existen infinitas opciones, depende de ti el camino que escoges.
-Para que tu red social responda a las necesidades de sus usuarios, probablemente
-deberás adquirir nuevos conocimientos para implementar sus preferencias.
-
-Esta vez, haz _code review_(feedback de tu código) con **otro squad**, para
-que puedas mejorar el producto. Mientras más feedback reciban, mejor.
-
-Esperamos que valores y escuches los comentarios y críticas de los demás,
-rescatando aquellos aspectos que sirven para tu crecimiento. Entrega siempre
-tu opinión de manera constructiva, fundamentada y coherente, con el propósito
-de ayudar a tus compañeras. Estos comentarios los debes hacer de manera honesta,
-empática e inmediata.
-
-Finalmente, deberás presentar el proyecto que creaste, al usuario que escogiste
-y las necesidades que lograste resolver en este proceso. Como siempre, sabemos
-que presentar puede ser una tarea difícil, esperamos que tengas capacidad de
-síntesis y articules tus ideas con claridad para que logres mostrar tu trabajo
-y que los demás lo comprendan.
-
-## Entrega
-
-El proyecto será _entregado_ subiendo tu código a GitHub (`commit`/`push`) y la
-interfaz será desplegada usando GitHub pages u otro servicio de hosting que
-puedas haber encontrado en el camino.
-
-## Evaluación
-
-### Tech
-
-| Habilidad |  |
-|-----------|----------------|
-| **JavaScript** | |
-| Estilo |
-| Nomenclatura/semántica |
-| Funciones/modularidad |
-| Estructuras de datos |
-| Tests |
-| **HTML** | |
-| Validación |
-| Estilo |
-| Semántica |
-| SEO | N/A
-| **CSS** | |
-| DRY |
-| Responsive |
-| **SCM** | |
-| Git |
-| GitHub |
-| **CS** |
-| Lógica |
-| Arquitectura |
-
-### UX
-
-| Habilidad | |
-|-----------|----------------|
-| User Centricity |
-| Visual Desing |
-
-### Habilidades Blandas
-
-Para este proyecto esperamos que ya hayas alcanzado el nivel 3 en todas tus
-habilidades blandas. Te aconsejamos revisar la rúbrica:
-
-| Habilidad | |
-|-----------|----------------|
-| Planificación y organización |
-| Autoaprendizaje |
-| Solución de Problemas |
-| Dar y recibir feedback |
-| Adaptabilidad |
-| Trabajo en equipo (trabajo colaborativo y responsabilidad) |
-| Comunicación eficaz |
-| Presentaciones |
-
-***
-
-## Pistas / Tips / Lecturas complementarias
-
-### Mobile first
-
-El concepto de [_mobile first_](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
-hace referencia a un proceso de diseño y desarrollo donde partimos de cómo se ve
-y cómo funciona la aplicación en un dispositivo móvil primero, y más adelante se
-ve como adaptar la aplicación a pantallas progresivamente grandes y
-características específicas del entorno desktop. Esto es en contraposición al
-modelo tradicional, donde primero se diseñaban los websites (o webapps) para
-desktop y después se trataba de _arrugar_ el diseño para que entre en pantallas
-más chicas. La clave acá es asegurarse de que desde el principio diseñan usando
-la vista _responsive_ de las herramientas de desarrollador (developer tools) del
-navegador. De esa forma, partimos de cómo se ve y comporta la aplicación en una
-pantalla y entorno móvil.
-
-### Múltiples vistas y Single-page Applications (SPAs)
-
-En proyectos anteriores nuestras aplicaciones habían estado compuestas de una
-sola _vista_ principal (una sóla _página_). En este proyecto se introduce la
-necesidad de tener que dividir nuestra interfaz en varias _vistas_ o _páginas_
-y ofrecer una manera de navegar entre estas vistas. Este problema se puede
-afrontar de muchas maneras: con archivos HTML independientes (cada uno con su
-URL) y links tradicionales, manteniendo estado en memoria y rederizando
-condicionalmente (sin refrescar la página), [manipulando el historial del
-navegador](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador)
-con [`window.history`](https://developer.mozilla.org/es/docs/Web/API/Window/history),
-o usando algun Library de Routing del cual puedes preguntarle a tus coachxs.
-En este proyecto te invitamos a explorar opciones y decidir una opción
-de implementación.
-
-### Escritura de datos
-
-En los proyectos anteriores hemos consumido (leído) datos, pero todavía no
-habíamos escrito datos (salvar cambios, crear datos, borrar, ...). En este
-proyecto tendrás que crear (salvar) nuevos datos, así como leer, actualizar y
-modificar datos existentes. Estos datos se podrán guardar de forma remota
-usando [Firebase](https://firebase.google.com/).
-
-Otras:
-
-* [Modulos: Export](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/export)
-* [Modulos: Import](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/import)
-* [Diseño web, responsive design y la importancia del mobile first - Media Click](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
-* [Mobile First: el enfoque actual del diseño web móvil - 1and1](https://www.1and1.es/digitalguide/paginas-web/diseno-web/mobile-first-la-nueva-tendencia-del-diseno-web/)
-* [Mobile First - desarrolloweb.com](https://desarrolloweb.com/articulos/mobile-first-responsive.html)
-* [Mobile First - ZURB](https://zurb.com/word/mobile-first)
-* [Mobile First Is NOT Mobile Only - Nielsen Norman Group](https://www.nngroup.com/articles/mobile-first-not-mobile-only/)
-
-***
-
-## Checklist (no olvides llenarla)
-
-### General
-
-* [ ] Producto final sigue los lineamientos del diseño.
-
-### `README.md`
-
-* [ ] Definición del producto
-* [ ] Resumen de entrevistas con usuarios.
-* [ ] Link/screenshots prototipo de baja fidelidad.
-* [ ] Conclusiones de pruebas con el producto en HTML.
-
-### Pruebas / tests
-
-* [ ] Pruebas unitarios cubren un mínimo del 70% de statements, functions,
-  lines, y branches.
-* [ ] Pasa tests (y linters) (`npm test`).
-
-### Creación de cuenta (sign up)
-
-* [ ] Permite crear cuenta.
-* [ ] Valida email.
-* [ ] Valida password.
-* [ ] Muestra mensajes de error.
-
-### Inicio de sesión (sign in)
-
-* [ ] Permite iniciar sesión.
-* [ ] Valida email.
-* [ ] Valida password.
-* [ ] Muestra mensajes de error.
-
-### Muro (wall/feed)
-
-* [ ] Muestra _muro_, o lista de publicaciones.
-* [ ] Permite hacer nuevas publicaciones.
-* [ ] Permite eliminar publicaciones.
-* [ ] Pide confirmación antes de borrar publicación.
-* [ ] Permite editar publicación en el mismo lugar (in place).
-* [ ] Permite filtrar publicaciones por público/privado.
-* [ ] Permite marcar publicaciones como _gustados_ (like, corazón, estrella,
-  etc...).
-* [ ] Permite ver cuántas marcas, likes, estrellas, corazones o lo que se haya
-  elegido, ha recibido una publicación.
-
-### Hacker Edition
-
-* [ ] Permite agregar amigos.
-* [ ] Permite eliminar amigos.
-* [ ] Permite compartir publicación (en twitter esto es retwittear, en facebook
-  es compartir).
-* [ ] Permite comentar o responder una publicación.
-* [ ] Permite editar perfil.
-* [ ] Permite ver perfil o resumen desde el _muro_ o lista de publicaciones.
-* [ ] Permite ver cuántas marcas, likes, estrellas, corazones o lo que se haya
-  elegido, ha recibido una publicación.
+ejercitar tus habilidades de comunicación y toma de decisiones

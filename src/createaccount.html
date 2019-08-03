@@ -5,16 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="login.css">
  
 
     <!-- Fuentes de Google Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Sniglet" rel="stylesheet">
     <!-- Fin Fuentes de Google Fonts -->
 
@@ -23,21 +21,28 @@
 
 <body>
 
-
+        <ul class="navigation">
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Explora México</a>
+                </li>
+              </ul>
 
     <div class="loginBox">
         <article class="imgBack">
 
 
-            <h3 class="act">Crea una cuenta</h3><br>
+            <h3 class="act">Crea una cuenta</h3>
 
             <form class="login-box" action="index.html" method="post">
 
+                <button class="fab fa-facebook-square fb" id="loginFb" type="button">  Facebook</button>
+                <button class="fab fa-google-plus-square google" id="loginGoogle" type="button">  Google</button><br>
+                    <p class="text-center">- or -</p>
 
-                <span class="fas fa-at"><input type="email" placeholder="Escribe tu eMail" id="email">
-                    <span class="fas fa-key"><input type="password" placeholder="Escribe tu contraseña"
-                            id="pass"><br><br>
-                        <input type="button" value="Registrar" id="registered"><br><br>
+                    <i class="large material-icons">person</i><input type="user" placeholder="Nombre de usuario" id="userName">
+                    <i class="material-icons">mail</i><input type="email" placeholder="Escribe tu eMail" id="email">
+                    <i class="material-icons">lock_open</i><input type="password" placeholder="Escribe tu contraseña" id="pass">
+                        <input type="button" value="Registrar" id="registered"><br>
 
                         <p class="message">¿Ya tienes una cuenta? <a href="#login">Inicia Sesión</a></p>
 
@@ -45,7 +50,6 @@
 
 
         </article>
-    </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>

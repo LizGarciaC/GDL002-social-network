@@ -3,7 +3,7 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url("https://i.pinimg.com/564x/bd/a2/25/bda225650f71b04d2b6bb92f717d7cab.jpg");
+    background-image: url("http://samadhicoaching.com/wp-content/uploads/2014/07/ToTheTop2.jpg");
     height: 650px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -12,29 +12,57 @@ body{
     font-family: 'Lato';
    }
   
+   .navigation {
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+    background-color: #404041;
+  }
+  
+  .navigation .nav-link {
+    text-transform: uppercase;
+    color: #fff;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+    font-weight: 400;
+    text-align: left;
+    margin-left: 3%;
+  }
+  
+  .navigation .nav-item .nav-link {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+  }
+  
+  
+   
+
    .loginBox {
     width: 320px;
-    height: 550px;
+    height: 530px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    top: 50%;
+    top: 64%;
     left: 50%;
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
-    padding: 70px 30px;
+    padding: 35px 30px;
   }
 
   p {
-    text-align: center;
+    text-align: left;
   }
 
   h3 {
     margin: 0;
     padding: 0 0 20px;
     font-family: 'Lato';
-    font-size: 27px;
+    font-size: 25px;
     margin-top: -10%;
+    margin-bottom: 3%;
   }
   
   
@@ -42,35 +70,43 @@ body{
     margin: 0;
     padding: 0;
     font-weight: bold;
+    font-family: 'Lato';
+    font-size: 18px;
   }
+
   .loginBox input{
     width: 100%;
     margin-bottom: 20px;
   }
-  .loginBox input[type="email"], input[type="password"]
+  .loginBox input[type="email"], input[type="password"], input[type="user"]
   {
     border: none;
     border-bottom: 1px solid #fff;
     background: transparent;
     outline: none;
-    height: 40px;
+    height: 22px;
     color: #fff;
     font-size: 16px;
+    font-family: 'Lato';
   }
   .loginBox input[type="button"]
   {
+    width: 136px;
     border: none;
     outline: none;
-    height: 40px;
-    background: #626566;
+    height: 30px;
+    background: #318aac;
     color: #fff;
     font-size: 18px;
+    font-family: 'Lato';
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
+    margin-left: 20%;
 }
+
   .loginBox input[type="button"]:hover
   {
     cursor: pointer;
@@ -80,12 +116,14 @@ body{
   
   .loginBox a{
     text-decoration: none;
-    font-size: 14px;
+    font-size: 18px;
     color: #fff;
+    font-family: 'Lato';
+    font-weight: bold;
   }
   .loginBox a:hover
   {
-    color: #39dc79;
+    color: #049899;
   }
   
   .fb {
@@ -106,6 +144,7 @@ body{
     float: none;
     margin-left: 20%;
   }
+
 
   button.fb:hover {
     background: #fff;
@@ -138,3 +177,170 @@ body{
         color: #fff;
         font-family: 'Lato';
       }
+
+      @media only screen
+and (min-device-width : 370px)
+and (max-device-width : 823px) {
+
+  .loginBox {
+    width: 320px;
+    height: 540px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 54%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 35px 30px;
+  }
+      }
+
+
+      @media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+  .loginBox {
+    width: 420px;
+    height: 740px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 53%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 79px 30px;
+  }
+
+  p {
+    text-align: left;
+  }
+
+  h3 {
+    margin: 0;
+    padding: 0 0 20px;
+    font-family: 'Lato';
+    font-size: 36px;
+    margin-top: -10%;
+    margin-bottom: 3%;
+  }
+  
+  
+  .loginBox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-family: 'Lato';
+    font-size: 25px;
+  }
+
+  .loginBox input{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .loginBox input[type="email"], input[type="password"], input[type="user"]
+  {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 55px;
+    color: #fff;
+    font-size: 22px;
+    font-family: 'Lato';
+  }
+  .loginBox input[type="button"]
+  {
+    width: 175px;
+    border: none;
+    outline: none;
+    height: 45px;
+    background: #318aac;
+    color: #fff;
+    font-size: 24px;
+    font-family: 'Lato';
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    margin-left: 28%;
+    margin-top: 3%;
+}
+
+  .loginBox input[type="button"]:hover
+  {
+    cursor: pointer;
+    background: #D4DADC;
+    color: #000;
+  }
+  
+  .loginBox a{
+    text-decoration: none;
+    font-size: 22px;
+    color: #fff;
+    font-family: 'Lato';
+    font-weight: bold;
+    margin-bottom: 4%;
+  }
+  .loginBox a:hover
+  {
+    color: #049899;
+  }
+  
+  .fb {
+    border: none;
+    background: #3b5998;
+    width: 175px;
+    height: 45px;
+    font-family: 'Lato';
+    font-size: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border: 1px solid #29487d;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition:all 0.3s linear;
+    text-align: center;
+    float: none;
+    margin-left: 23%;
+  }
+
+
+  button.fb:hover {
+    background: #fff;
+    color: #3b5998;
+    }
+
+    .google {
+      border: none;
+      background: orangered;
+      width: 175px;
+      height: 45px;
+      font-family: 'Lato';
+      font-size: 20px;
+      color: #fff;
+      text-transform: uppercase;
+      border-radius: 4px;
+      border: 1px solid #29487d;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition:all 0.3s linear;
+      margin-left: 23%;
+      }
+      
+      button.google:hover {
+      background: #fff;
+      color: #3b5998;
+      }
+      
+      ::placeholder {
+        color: #fff;
+        font-family: 'Lato';
+      }
+
+
+}

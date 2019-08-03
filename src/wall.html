@@ -1,6 +1,9 @@
+<!DOCTYPE html>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+
 <link rel="stylesheet" href="wall.css">
+
 <ul class="navigation">
   <li class="nav-item">
     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Explora México</a>
@@ -16,37 +19,47 @@
   </header>
 
   <ul class="nav">
-    <li><a href="https://www.miviajeporelmundo.com/destinos/consejos-para-viajar-mexico">Toda la información para
+    <li><a href="https://www.miviajeporelmundo.com/destinos/consejos-para-viajar-mexico">* Toda la información para
         planear tu viaje a México</a></li>
-    <li><a href="https://www.miviajeporelmundo.com/reducir-o-eliminar-el-plastico-cuando-viajas">8 Formas para reducir
+    <li><a href="https://www.miviajeporelmundo.com/reducir-o-eliminar-el-plastico-cuando-viajas">* 8 Formas para reducir
         o eliminar el plastico cuando viajas</a></li>
-    <li><a href="https://www.miviajeporelmundo.com/mujeres-que-viajan-solas">Historias y consejos de mujeres que
+    <li><a href="https://www.miviajeporelmundo.com/mujeres-que-viajan-solas">* Historias y consejos de mujeres que
         viajan solas por el mundo</a></li>
-
-    <li><a href="#" id="mnuLogOut"> Cerrar Sesión</a> </li>
-    <li><a href="#"></a></li>
   </ul>
 </nav>
+
+<section>
+<nav>   
+    <label for="public" id="btnShowPublic"><i class="material-icons">public</i></label>
+    <label for="private" id="btnShowPrivate"><i class="material-icons">lock</i></label>
+    <label for="notifications"><i class="material-icons">notifications</i></label>
+    <label for="close" id="logOut"><i class="material-icons">power_settings_new</i></label>
+    </nav>
+</section>
+
+
 
 <div class="overlay"></div> <!-- improve main element 3d movement -->
 
 
-<div class="card">
-  <div class="card-header">
-    <textarea name="¡Comparte tu viaje!" class="post" id="post" cols="30" rows="6"></textarea>
+<div class="card mt-4">
+    <div class="card-header card-title headerColor">
+        <i class="material-icons">create</i>
+      Publicación
+      <select name="filter" class="selectPost" id="Filter">
+          <option value="publico">Público</option>
+          <option value="privado">Privado</option>
+        </select>
+    </div>
 
+    <div class="card-body">
+      <textarea name="post" id="post" placeholder="¡Comparte tu viaje!" class="textPost"></textarea>
+    </div>
+
+    <div class="card-footer footerColor widget">
+        <button type="button" id="btnPost" class="btn btn-info publish">Publicar</button>
+    </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title"></h5>
-    <p class="card-text"></p>
-    <a href="#" id="logOut" class="btn btn-info">Cerrar Sesión</a>
-    <a href="#" id="btnPost" class="btn btn-info" >Publicar</a>
-    <select name="filter" id="Filter">
-      <option value="publico">Público</option>
-      <option value="privado">Privado</option>
-    </select>
-  </div>
-</div><br>
 
 
 <!-- División para generar los post dinámicos -->
